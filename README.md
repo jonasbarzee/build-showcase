@@ -20,9 +20,9 @@ Tinker-Vote is a collaborative hub for makers, gamers, and hardware enthusiasts 
 
 ### Design
 
-![Design image](placeholder.png)
+![Mockup image](WebAppMockup.png)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+There are 4 views, login, vote, trending, and gallery. Login will allow the user to enter their credentials and if they don't have an account, sign up. In vote users can upvote or downvote the next ideas for someone to make and tinker with. Trending shows the most views posts that are being voted on. Gallery is a view of everyones completed projects.
 
 ```mermaid
 sequenceDiagram
