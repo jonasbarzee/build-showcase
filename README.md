@@ -2,7 +2,7 @@
 
 [My Notes](notes.md)
 
-Tinker-Vote is a simple web application that allows users to vote on a person's next project idea. It gives users a place to post their ideas through text or hyperlink and show it to the public or friends. 
+Tinker-Vote is a simple web application that allows users to vote on a person's next project idea. It gives users a place to post their ideas through text or hyperlink and show it to the public or friends. All ideas are welcome.
 
 ## 🚀 Specification Deliverable
 
