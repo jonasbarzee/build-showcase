@@ -6,9 +6,6 @@ Tinker-Vote is a simple web application that allows users to vote on a person's 
 
 ## 🚀 Specification Deliverable
 
-> [!NOTE]
-> Fill in this sections as the submission artifact for this deliverable. You can refer to this [example](https://github.com/webprogramming260/startup-example/blob/main/README.md) for inspiration.
-
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] Proper use of Markdown
@@ -20,7 +17,6 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 ### Elevator pitch
 
 Tinker-Vote is a collaborative hub for makers, gamers, and hardware enthusiasts to decide their next big project. Users can post potential "Build Ideas"—ranging from custom Minecraft server rigs to Raspberry Pi smart mirrors—and let the community vote on which one should be tackled next. Additionally, a "Showcase Gallery" allows creators to share links to their completed builds, providing inspiration and proof of concept. It turns the solitary hobby of tinkering into a social, data-driven experience where the best ideas rise to the top in real-time.
-
 
 ### Design
 
@@ -44,33 +40,13 @@ sequenceDiagram
 ### Technologies
 
 I am going to use the required technologies in the following ways.
-Key Features & Technology Implementation
 
-HTMLCSS: 
-
-
-JavaScript: * Handles UI interactions, such as switching between the "Ideas" and "Showcase" tabs, and processing form submissions for new entries.
-
-Authentication: * Users can create accounts and log in.
-
-Only logged-in users can post new ideas, vote, or add projects to the Showcase. This ensures one vote per person per idea.
-
-Database (Persistence): * Stores user profiles, project idea descriptions, vote counts, and URLs/descriptions for the Showcase Gallery.
-
-Web Service (API): * External Call: The app will call a Tech News API (like NewsAPI or a similar hobbyist feed) to display a "Daily Tinkering Inspiration" sidebar.
-
-Internal Service: Provides endpoints for the frontend to fetch the list of top-voted ideas and gallery items.
-
-Web Sockets (Real-time): * When a user votes on a project idea, the vote count updates instantly for all other users currently viewing that page without requiring a browser refresh.
-
-
-- **HTML** * A clean, responsive interface using modern CSS (Flexbox/Grid).
-A Dashboard for trending ideas, a Voting Page, and a Showcase Gallery for completed projects.
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - A simple interface built with html with only the necessary UI elements.  A Dashboard for trending ideas, a Voting Page, and a Showcase Gallery for completed projects.
+- **CSS** - Use a simple but beautiful flexbox/grid setup for a pleasing user interface.
+- **React** - One page with three different views for the trending ideas, voting page, and gallery.
+- **Service** - Using endpoints for voting, checking votes, authentication, and login/logout.
+- **DB/Login** - Stores authentication for users and preferences like light or dark mode.
+- **WebSocket** - Voting will be done in realtime. When a user votes on a project idea, a message will be broadcast to all users and immediately updated.
 
 ## 🚀 AWS deliverable
 
