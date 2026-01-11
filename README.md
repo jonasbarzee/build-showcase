@@ -26,9 +26,28 @@ There are 4 views, login, vote, trending, and gallery. Login will allow the user
 
 ```mermaid
 sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
+    actor User
+    participant React Client
+    participant Server API/WS
+    participant Database
+
+    Note over User, Database: Initial Load Workflow
+    User->>React Client: Navigates to Voting View
+    React Client->>Server API/WS: GET /api/ideas (Fetch current list)
+    Server API/WS->>Database: Query active ideas & vote counts
+    Database-->>Server API/WS: Return data
+    Server API/WS-->>React Client: Return JSON list of ideas
+    React Client->>Server API/WS: Establish WebSocket Connection
+    React Client-->>User: Displays list of idea cards
+
+    Note over User, Database: Real-time Voting Workflow
+    User->>React Client: Clicks "Upvote" button on an idea
+    React Client->>Server API/WS: POST /api/vote (Idea ID)
+    Server API/WS->>Database: Increment vote count for ID
+    Database-->>Server API/WS: Confirm update
+    Server API/WS-->React Client: WebSocket Broadcast: {id: 123, newCount: 45}
+    Note right of React Client: Client updates the number instantly without reload
+    React Client-->>User: Shows updated count
 ```
 
 ### Key features
