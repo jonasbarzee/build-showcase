@@ -33,9 +33,13 @@ sequenceDiagram
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Sercure login with password encryption
+- Voting and project selection
+- Posting projects to vote on
+- Preferences like units or light and dark mode
+- Treading page based on posts with most traffic
+- Gallery for completes projects
+- Commenting on posts
 
 ### Technologies
 
