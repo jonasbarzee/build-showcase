@@ -1,14 +1,8 @@
-# Your startup name here
+# Tinker-Vote
 
 [My Notes](notes.md)
 
-A brief description of the application here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-> [!NOTE]
-> This is a template for your startup application. You must modify this `README.md` file for each phase of your development. You only need to fill in the section for each deliverable when that deliverable is submitted in Canvas. Without completing the section for a deliverable, the TA will not know what to look for when grading your submission. Feel free to add additional information to each deliverable description, but make sure you at least have the list of rubric items and a description of what you did for each item.
-
-> [!NOTE]
-> If you are not familiar with Markdown then you should review the [documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) before continuing.
+Tinker-Vote is a simple web application that allows users to vote on a person's next project idea. It gives users a place to post their ideas through text or hyperlink and show it to the public or friends. 
 
 ## 🚀 Specification Deliverable
 
@@ -25,7 +19,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Tinker-Vote is a collaborative hub for makers, gamers, and hardware enthusiasts to decide their next big project. Users can post potential "Build Ideas"—ranging from custom Minecraft server rigs to Raspberry Pi smart mirrors—and let the community vote on which one should be tackled next. Additionally, a "Showcase Gallery" allows creators to share links to their completed builds, providing inspiration and proof of concept. It turns the solitary hobby of tinkering into a social, data-driven experience where the best ideas rise to the top in real-time.
+
 
 ### Design
 
@@ -49,8 +44,28 @@ sequenceDiagram
 ### Technologies
 
 I am going to use the required technologies in the following ways.
+Key Features & Technology Implementation
 
-- **HTML** - Description here
+HTMLCSS: 
+
+
+JavaScript: * Handles UI interactions, such as switching between the "Ideas" and "Showcase" tabs, and processing form submissions for new entries.
+
+Authentication: * Users can create accounts and log in.
+
+Only logged-in users can post new ideas, vote, or add projects to the Showcase. This ensures one vote per person per idea.
+
+Database (Persistence): * Stores user profiles, project idea descriptions, vote counts, and URLs/descriptions for the Showcase Gallery.
+
+Web Service (API): * External Call: The app will call a Tech News API (like NewsAPI or a similar hobbyist feed) to display a "Daily Tinkering Inspiration" sidebar.
+
+Internal Service: Provides endpoints for the frontend to fetch the list of top-voted ideas and gallery items.
+
+Web Sockets (Real-time): * When a user votes on a project idea, the vote count updates instantly for all other users currently viewing that page without requiring a browser refresh.
+
+
+- **HTML** * A clean, responsive interface using modern CSS (Flexbox/Grid).
+A Dashboard for trending ideas, a Voting Page, and a Showcase Gallery for completed projects.
 - **CSS** - Description here
 - **React** - Description here
 - **Service** - Description here
