@@ -1,14 +1,30 @@
-<!DOCTYPE html>
-
-<html>
-
-<head>
-    <h1>Testing</h1>
-
-</head>
 <body>
+    <header>
+        <h1>Tinker-Vote </h1>
+    </header>
 
-
+    <main>
+        <section>
+            <h2>Login</h2>
+            <!--Username and password input boxes-->
+            <form action="formSubmit.html" method="post">
+                <ul>
+                    <li>
+                        <!-- Includes validation-->
+                        <label for="username">Username: </label>
+                        <input type="text" id="username" name="username" placeholder="required" required />
+                    </li>
+                    <li>
+                        <label for="password">Password: </label>
+                        <input type="password" id="password" name="varPassword" required pattern="[^\s]+"
+                            placeholder="required" />
+                    </li>
+                    <!-- Submit form with POST method and enctype="multipart/form-data" to send file contents. -->
+                    <!-- This doesn't show up to the user, but allows the form to send associated data. -->
+                    <input type="hidden" id="secretData" name="varSecretData" value="1989 - the web was born" />
+                </ul>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
 </body>
-
-</html>
