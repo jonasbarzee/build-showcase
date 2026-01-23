@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tinker-Vote Login</title>
-    <meta name="viewport" content="device-width, initial-scale=1.0">
-    <meta charset="utf-8">
 </head>
 
 <body>
@@ -17,24 +17,27 @@
             <h2>Login</h2>
             <!--Username and password input boxes-->
             <form action="formSubmit.html" method="post">
-                <div>
+                <fieldset>
+                    <legend>Account</legend>
                     <div>
-                        <!-- Includes validation-->
-                        <label for="username">Username: </label>
-                        <input type="text" id="username" name="username" placeholder="required" required />
+                        <div>
+                            <!-- Includes validation-->
+                            <label for="username">Username: </label>
+                            <input type="text" id="username" name="username" autocomplete="username"
+                                placeholder="required" required />
+                        </div>
+                        <div>
+                            <label for="password">Password: </label>
+                            <input type="password" id="password" name="password" required pattern="[^\s]+"
+                                placeholder="required" aria-describedby="hint" autocomplete="current-password" />
+                            <p id="hint">Password cannot include any spaces</p>
+                        </div>
                     </div>
                     <div>
-                        <label for="password">Password: </label>
-                        <input type="password" id="password" name="password" required pattern="[^\s]+"
-                            placeholder="required" aria-describedby="requirements"/>
-                        <p id="requirements">Password cannot include any spaces</p>
-                    </div>
-                </div>
-                <div>
-                    <!-- Submit form with POST method and enctype="multipart/form-data" to send file contents. -->
-                    <!-- This doesn't show up to the user, but allows the form to send associated data. -->
-                    <input type="hidden" id="secretData" name="varSecretData" value="1989 - the web was born" />
-                    <button type="submit">Submit</button>
+
+                </fieldset>
+                <!-- Submit form with POST method and enctype="multipart/form-data" to send file contents. -->
+                <button type="submit">Sign In</button>
                 </div>
             </form>
         </section>
