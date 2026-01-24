@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tinker-Vote Login</title>
+</head>
+
+<body>
+    <header>
+        <h1>Tinker-Vote </h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Login</h2>
+            <!--Username and password input boxes-->
+            <form action="formSubmit.html" method="post">
+                <fieldset>
+                    <legend>Account</legend>
+                    <div>
+                        <div>
+                            <!-- Includes validation-->
+                            <label for="username">Username: </label>
+                            <input type="text" id="username" name="username" autocomplete="username"
+                                placeholder="required" required />
+                        </div>
+                        <div>
+                            <label for="password">Password: </label>
+                            <input type="password" id="password" name="password" required pattern="[^\s]+"
+                                placeholder="required" aria-describedby="hint" autocomplete="current-password" />
+                            <p id="hint">Password cannot include any spaces</p>
+                        </div>
+                    </div>
+                    <div>
+
+                </fieldset>
+                <!-- Submit form with POST method and enctype="multipart/form-data" to send file contents. -->
+                <button type="submit">Sign In</button>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+
+</html>
