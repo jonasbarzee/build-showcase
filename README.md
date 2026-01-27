@@ -81,15 +81,15 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [x] **HTML pages** - I did not complete this part of the deliverable.
-- [x] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [x] **Links** - I did not complete this part of the deliverable.
-- [x] **Text** - I did not complete this part of the deliverable.
-- [x] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [x] **Images** - I did not complete this part of the deliverable.
-- [x] **Login placeholder** - I did not complete this part of the deliverable.
-- [x] **DB data placeholder** - I did not complete this part of the deliverable.
-- [x] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - I created 4 different pages, index, voting, gallery, and trending.
+- [x] **Proper HTML element usage** - I used header, footer, body, nav, and main tags as well as other tags like meta.
+- [x] **Links** - I have links to the pages between themselves, the link to my Github repository, and a link to a picture for a mock post.
+- [x] **Text** - I added headers and titles for the pages as well as some text for mocking posts.
+- [x] **3rd party API placeholder** - I added a 3rd party API placeholder for the weather in the footer section of my pages.
+- [x] **Images** - I added links to images so I wouldn't be using more money and storage on my AWS instance.
+- [x] **Login placeholder** - I added a login placeholder that doesn't authenticate but does allow input for logging in.
+- [x] **DB data placeholder** - I added mock posts in place of the content to be fetched from the database in the future.
+- [x] **WebSocket placeholder** - I added two mock buttons for the websocket interactions, upvoting and downvoting a post, so you can see if people like or hate your next tinkering project in real time!
 
 ## 🚀 CSS deliverable
 
