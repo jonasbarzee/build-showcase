@@ -86,7 +86,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Links** - I have links to the pages between themselves, the link to my Github repository, and a link to a picture for a mock post.
 - [x] **Text** - I added headers and titles for the pages as well as some text for mocking posts.
 - [x] **3rd party API placeholder** - I added a 3rd party API placeholder for the weather in the footer section of my pages.
-- [x] **Images** - I added links to images so I wouldn't be using more money and storage on my AWS instance.
+- [x] **Images** - I added a TinkerVote logo through an image tag.
 - [x] **Login placeholder** - I added a login placeholder that doesn't authenticate but does allow input for logging in.
 - [x] **DB data placeholder** - I added mock posts in place of the content to be fetched from the database in the future.
 - [x] **WebSocket placeholder** - I added two mock buttons for the websocket interactions, upvoting and downvoting a post, so you can see if people like or hate your next tinkering project in real time!
