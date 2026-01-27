@@ -37,11 +37,13 @@
     <div>
         <dialog id="postDialog">
             <p>Post your tinkering projects here</p>
+            <textarea>Put the text for your post here</textarea>
+            <button type="button" id="submitPost">post</button>
             <button type="button" id="closePostDialog"
-            onclick="document.querySelector('#postDialog').close()">Close</button>
+            onclick="document.querySelector('#postDialog').close()">close</button>
         </dialog>
         <button type="button" id="openPostDialog" 
-        onclick="document.querySelector('#postDialog').showModal()">post &#128393</button>
+        onclick="document.querySelector('#postDialog').showModal()">create post &#128393</button>
 
         <dialog id="settingsDialog">
             <p>Edit your settings here</p>
@@ -55,6 +57,7 @@
             logout &#8592</button>
 
     </div>
+
 </footer>
 
 </html>
