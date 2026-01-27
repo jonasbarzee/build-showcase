@@ -25,6 +25,14 @@
             <div>
                 <text>Placeholder for content to be fetched from the database</text>
             </div>
+                <article>
+                    <div>
+                        <p><strong>@username</strong></p>
+                        <p>I finally completed my first project, a hotdog maker! I used a smart fridge and a GPU to make it work with custom RGB.</p>
+                        <a href="https://media.istockphoto.com/id/1282514444/photo/cow-udder-large-and-full-and-with-horns-in-the-green-pasture-and-a-blue-sky.jpg?s=612x612&w=0&k=20&c=a2TuO1u4H4wKW7aSizBh7Df8CLA70MEPTcadLfc35bk=">MockLinkToPhoto</a>
+                        <p>^^^ Placeholder for content to be fetched from the database</p>
+                    </div>
+                </article>
        </section>
     </main>
 
@@ -37,11 +45,13 @@
     <div>
         <dialog id="postDialog">
             <p>Post your tinkering projects here</p>
+            <textarea>Put the text for your post here</textarea>
+            <button type="button" id="submitPost">post</button>
             <button type="button" id="closePostDialog"
-            onclick="document.querySelector('#postDialog').close()">Close</button>
+            onclick="document.querySelector('#postDialog').close()">close</button>
         </dialog>
         <button type="button" id="openPostDialog" 
-        onclick="document.querySelector('#postDialog').showModal()">post &#128393</button>
+        onclick="document.querySelector('#postDialog').showModal()">create post &#128393</button>
 
         <dialog id="settingsDialog">
             <p>Edit your settings here</p>
@@ -55,6 +65,7 @@
             logout &#8592</button>
 
     </div>
+
 </footer>
 
 </html>
