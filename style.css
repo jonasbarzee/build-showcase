@@ -11,6 +11,29 @@
     --light-orange: #FFD5B4;
     --dark-orange: #CC5500;
     --bg-cream: #FFF9F5;
+    --text-grey: #36454F;
+}
+
+a {
+    color: var(--primary-orange);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: var(--dark-orange);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.nav-link {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--dark-orange) !important;
+}
+
+.nav-link.active {
+    border-bottom: 3px solid var(--primary-orange);
 }
 
 .btn-primary {
@@ -26,5 +49,5 @@
 body {
     font-family: "Swanky and Moo Moo", cursive;
     background-color: var(--bg-cream);
-    color: var(--dark-orange)
+    color: var(--text-grey)
 }
