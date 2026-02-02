@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Swanky+and+Moo+Moo&display=swap');
+
+.swanky-and-moo-moo-regular {
+    font-family: "Swanky and Moo Moo", cursive;
+    font-weight: 400;
+    font-style: regular;
+}
+
+body {
+    font-family: "Swanky and Moo Moo", cursive;
+}
