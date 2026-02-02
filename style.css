@@ -61,6 +61,13 @@ a:hover {
 .btn-primary {
     background-color: var(--dark-orange) !important;
     border-color: var(--light-orange) !important;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--dark-orange) !important;
+    box-shadow: 0 0 15px 5px rgba(255, 140, 0, 0.6);
+    translate: translateY(-2px);
 }
 
 .btn-secondary {
@@ -68,8 +75,22 @@ a:hover {
     border-color: var(--dark-orange) !important;
 }
 
+.btn-secondary:hover {
+    background-color: var(--primary-orange) !important;
+    box-shadow: 0 0 15px 5px rgba(255, 140, 0, 0.6);
+    translate: translateY(-2px);
+}
+
 body {
     font-family: "Swanky and Moo Moo", cursive;
     background-color: var(--bg-cream);
     color: var(--text-grey);
+}
+
+footer {
+    background-color: var(--light-orange);
+    color: var(--dark-orange);
+    text-align: center;;
+    padding: 20px 0;
+    border-top: 3px solid var(--primary-orange);
 }
