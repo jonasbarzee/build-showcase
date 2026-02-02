@@ -11,21 +11,23 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-    <header>
-        <nav class="d-flex align-items-center gap-4 p-3">
+       <header>
+        <nav class="d-flex flex-warp align-items-center justify-content-between border-bottom gap-4 p-3">
             <img src="TinkerVote.png" alt="TinkerVote Logo" style="height: 50px;">
-
-            <div class="d-flex align-items-center gap-3">
+            <div class="d-flex flex-warp gap-3 px-2 justify-content-cetner">
                 <a href="voting.html" class="nav-link">Vote</a>
                 <a href="trending.html" class="nav-link active">Trending</a>
                 <a href="gallery.html" class="nav-link">Gallery</a>
             </div>
 
-            <div class="d-flex align-items-center gap-3 ms-auto">
-                <h3>Currently Logged In as @YourUsername</h3>
+            <div class="user-info text-end mt-2 mt-md-0">
+                <span class="d-block d-md-inline">currently Logged In as</span>
+                <strong>@YourUsername</strong>
             </div>
         </nav>
     </header>
+
+
 
     <main class="flex-grow-1">
         <section>

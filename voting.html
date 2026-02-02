@@ -10,19 +10,19 @@
     <title>Tinker-Vote Voting</title>
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-warp flex-column min-vh-100">
     <header>
-        <nav class="d-flex align-items-center gap-4 p-3">
+        <nav class="d-flex flex-warp align-items-center justify-content-between border-bottom gap-4 p-3">
             <img src="TinkerVote.png" alt="TinkerVote Logo" style="height: 50px;">
-
-            <div class="d-flex align-items-center gap-3">
+            <div class="d-flex flex-warp gap-3 px-2 justify-content-cetner">
                 <a href="voting.html" class="nav-link active">Vote</a>
                 <a href="trending.html" class="nav-link">Trending</a>
                 <a href="gallery.html" class="nav-link">Gallery</a>
             </div>
 
-            <div class="d-flex align-items-center gap-3 ms-auto">
-                <h3>Currently Logged In as @YourUsername</h3>
+            <div class="user-info text-end mt-2 mt-md-0">
+                <span class="d-block d-md-inline">currently Logged In as</span>
+                <strong>@YourUsername</strong>
             </div>
         </nav>
     </header>
@@ -55,37 +55,33 @@
 
 </body>
 
-<footer>
-    <div class="continer">
-        <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-4">
+<footer class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12 text-center">
+            <p class="mb-3">Placeholder for 3rd party weather API call</p>
 
-                <div>
-                    <p>Placeholder for 3rd party weather API call</p>
-                </div>
-                <div>
-                    <dialog id="postDialog">
-                        <label class="form-label">Post your tinkering projects here</label>
-                        <textarea class="form-control">Put the text for your post here</textarea>
-                        <button type="button" id="submitPost" class="btn btn-primary">post</button>
-                        <button type="button" id="closePostDialog" class="btn btn-secondary"
-                            onclick="document.querySelector('#postDialog').close()">close</button>
-                    </dialog>
-                    <button type="button" id="openPostDialog" class="btn btn-primary"
-                        onclick="document.querySelector('#postDialog').showModal()">create post &#128393</button>
+            <div class="d-flex flex-warp justify-content-center gap-2">
+                <dialog id="postDialog">
+                    <label class="form-label">Post your tinkering projects here</label>
+                    <textarea class="form-control">Put the text for your post here</textarea>
+                    <button type="button" id="submitPost" class="btn btn-primary">post</button>
+                    <button type="button" id="closePostDialog" class="btn btn-secondary"
+                        onclick="document.querySelector('#postDialog').close()">close</button>
+                </dialog>
+                <button type="button" id="openPostDialog" class="btn btn-primary"
+                    onclick="document.querySelector('#postDialog').showModal()">create post &#128393</button>
 
-                    <dialog id="settingsDialog">
-                        <p>Edit your settings here</p>
-                        <button type="button" id="closeSettingsDialog" class="btn btn-primary"
-                            onclick="document.querySelector('#settingsDialog').close()">Close</button>
-                    </dialog>
-                    <button type="button" class="btn btn-primary"
-                        onclick="document.querySelector('#settingsDialog').showModal()">
-                        settings &#x2699</button>
+                <dialog id="settingsDialog">
+                    <p>Edit your settings here</p>
+                    <button type="button" id="closeSettingsDialog" class="btn btn-primary"
+                        onclick="document.querySelector('#settingsDialog').close()">Close</button>
+                </dialog>
+                <button type="button" class="btn btn-primary"
+                    onclick="document.querySelector('#settingsDialog').showModal()">
+                    settings &#x2699</button>
 
-                    <button type="button" class="btn btn-primary" onclick="window.location.href='index.html'">
-                        logout &#8592</button>
-                </div>
+                <button type="button" class="btn btn-primary" onclick="window.location.href='index.html'">
+                    logout &#8592</button>
             </div>
         </div>
     </div>
