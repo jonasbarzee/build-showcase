@@ -14,6 +14,28 @@
     --text-grey: #36454F;
 }
 
+.form-label {
+    font-size: 1.3rem;
+    color: var(--dark-orange);
+}
+
+.form-control {
+    border: 2px solid var(--light-orange);
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    padding: 10px;
+}
+
+.form-control:focus {
+    border-color: var(--primary-orange);
+    box-shadow: 0 0 0 0.25rem rgba(255, 150, 0, 0.25);
+    outline: 0;
+}
+
+.form-control::placeholder {
+    color: #ccc;
+    font-style: italic;
+}
+
 a {
     color: var(--primary-orange);
     text-decoration: none;
