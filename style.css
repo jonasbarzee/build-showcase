@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Swanky+and+Moo+Moo&display=swap');
+
+.swanky-and-moo-moo-regular {
+    font-family: "Swanky and Moo Moo", cursive;
+    font-weight: 400;
+    font-style: regular;
+}
+
+:root {
+    --primary-orange: #FF851B;
+    --light-orange: #FFD5B4;
+    --dark-orange: #CC5500;
+    --bg-cream: #FFF9F5;
+    --text-grey: #36454F;
+}
+
+.form-label {
+    font-size: 1.3rem;
+    color: var(--dark-orange);
+}
+
+.form-control {
+    border: 2px solid var(--light-orange);
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    padding: 10px;
+}
+
+.form-control:focus {
+    border-color: var(--primary-orange);
+    box-shadow: 0 0 0 0.25rem rgba(255, 150, 0, 0.25);
+    outline: 0;
+}
+
+.form-control::placeholder {
+    color: #ccc;
+    font-style: italic;
+}
+
+a {
+    color: var(--primary-orange);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: var(--dark-orange);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.nav-link {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--dark-orange) !important;
+}
+
+.nav-link.active {
+    border-bottom: 3px solid var(--primary-orange);
+}
+
+.btn-primary {
+    background-color: var(--dark-orange) !important;
+    border-color: var(--light-orange) !important;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--dark-orange) !important;
+    box-shadow: 0 0 15px 5px rgba(255, 140, 0, 0.6);
+    translate: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: var(--primary-orange) !important;
+    border-color: var(--dark-orange) !important;
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-orange) !important;
+    box-shadow: 0 0 15px 5px rgba(255, 140, 0, 0.6);
+    translate: translateY(-2px);
+}
+
+body {
+    font-family: "Swanky and Moo Moo", cursive;
+    background-color: var(--bg-cream);
+    color: var(--text-grey);
+}
+
+footer {
+    background-color: var(--light-orange);
+    color: var(--dark-orange);
+    text-align: center;;
+    padding: 20px 0;
+    border-top: 3px solid var(--primary-orange);
+}

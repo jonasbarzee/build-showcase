@@ -95,12 +95,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Visually appealing colors and layout. No overflowing elements.** - I did not complete this part of the deliverable.
-- [ ] **Use of a CSS framework** - I did not complete this part of the deliverable.
-- [ ] **All visual elements styled using CSS** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing using flexbox and/or grid display** - I did not complete this part of the deliverable.
-- [ ] **Use of a imported font** - I did not complete this part of the deliverable.
-- [ ] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I did not complete this part of the deliverable.
+- [x] **Visually appealing colors and layout. No overflowing elements.** - I added some primary and secondary colors specified in my style.css file. I also pushed my footer to the bottom of my screen and pushed the logo and username to the edges of the screen. 
+- [x] **Use of a CSS framework** - I used the Bootstrap Framework
+- [x] **All visual elements styled using CSS** - I styled all my buttons with a primary and secondary button styling in style.css and I also setup styling for my input boxes like the login and the post dialog box. Everything was styled either inline or in style.css 
+- [x] **Responsive to window resizing using flexbox and/or grid display** - I used d-flex and flex-wrap to make the window resizing responsive.
+- [x] **Use of a imported font** - I used an imported font called Swanky Moo Moo.
+- [x] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I used the class selector to specify things like padding and flex boxes or pushing elements to the edges of the page.
 
 ## 🚀 React part 1: Routing deliverable
 
