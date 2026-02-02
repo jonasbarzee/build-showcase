@@ -37,6 +37,7 @@
 
 </body>
 
+
 <footer>
     <div>
         <p>Placeholder for 3rd party weather API call</p>
@@ -45,27 +46,24 @@
         <dialog id="postDialog">
             <p>Post your tinkering projects here</p>
             <textarea>Put the text for your post here</textarea>
-            <button type="button" id="submitPost">post</button>
-            <button type="button" id="closePostDialog"
+            <button type="button" id="submitPost" class="btn btn-primary">post</button>
+            <button type="button" id="closePostDialog" class="btn btn-secondary"
             onclick="document.querySelector('#postDialog').close()">close</button>
         </dialog>
-        <button type="button" id="openPostDialog" 
+        <button type="button" id="openPostDialog"  class="btn btn-primary"
         onclick="document.querySelector('#postDialog').showModal()">create post &#128393</button>
 
         <dialog id="settingsDialog">
             <p>Edit your settings here</p>
-            <button type="button" id="closeSettingsDialog"
+            <button type="button" id="closeSettingsDialog" class="btn-primary"
             onclick="document.querySelector('#settingsDialog').close()">Close</button>
         </dialog>
-        <button type="button" onclick="document.querySelector('#settingsDialog').showModal()">
+        <button type="button" class="btn btn-primary" onclick="document.querySelector('#settingsDialog').showModal()">
             settings &#x2699</button>
 
-        <button type="button" onclick="window.location.href='index.html'">
+        <button type="button" class="btn btn-primary" onclick="window.location.href='index.html'">
             logout &#8592</button>
-
     </div>
-
 </footer>
-
 
 </html>
