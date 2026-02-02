@@ -6,6 +6,15 @@
     font-style: regular;
 }
 
+:root {
+    --primary-orange: #FF851B;
+    --light-orange: #FFD5B4;
+    --dark-orange: #CC5500;
+    --bg-cream: #FFF9F5;
+}
+
 body {
     font-family: "Swanky and Moo Moo", cursive;
+    background-color: var(--bg-cream);
+    color: var(--dark-orange)
 }
