@@ -13,6 +13,16 @@
     --bg-cream: #FFF9F5;
 }
 
+.btn-primary {
+    background-color: var(--dark-orange) !important;
+    border-color: var(--light-orange) !important;
+}
+
+.btn-secondary {
+    background-color: var(--primary-orange) !important;
+    border-color: var(--dark-orange) !important;
+}
+
 body {
     font-family: "Swanky and Moo Moo", cursive;
     background-color: var(--bg-cream);
