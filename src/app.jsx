@@ -11,7 +11,6 @@ import { Footer } from './footer/footer';
 
 export default function App() {
     return (
-
         <BrowserRouter>
             <div className='app-container'>
                 <Header></Header>
