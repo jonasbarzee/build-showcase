@@ -106,9 +106,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - I did not complete this part of the deliverable.
+- [x] **Bundled using Vite** - I did build and bundle with Vite through the deployReact.sh script.
+- [x] **Components** - I added multiple React components, like App, Login, Trending, Voting, Header, Footer, and Gallery.
+- [x] **Router** - I added routing between all the pages, login, gallery, trending, and voting.
 
 ## 🚀 React part 2: Reactivity deliverable
 
