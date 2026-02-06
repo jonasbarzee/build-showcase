@@ -14,6 +14,12 @@
     --text-grey: #36454F;
 }
 
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 .form-label {
     font-size: 1.3rem;
     color: var(--dark-orange);
@@ -90,7 +96,8 @@ body {
 footer {
     background-color: var(--light-orange);
     color: var(--dark-orange);
-    text-align: center;;
+    text-align: center;
+    margin-top: auto;
     padding: 20px 0;
     border-top: 3px solid var(--primary-orange);
 }

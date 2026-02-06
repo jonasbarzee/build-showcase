@@ -13,17 +13,20 @@ export default function App() {
     return (
 
         <BrowserRouter>
-            <Header></Header>
+            <div className='app-container'>
+                <Header></Header>
 
-            <Routes>
-                <Route path='/' element={<Login />} exact />
-                <Route path='/gallery' element={<Gallery />} />
-                <Route path='/trending' element={<Trending />} />
-                <Route path='/voting' element={<Voting />} />
-                <Route path='*' element={<NotFound />} />
-            </Routes>
+                <Routes>
+                    <Route path='/' element={<Login />} exact />
+                    <Route path='/gallery' element={<Gallery />} />
+                    <Route path='/trending' element={<Trending />} />
+                    <Route path='/voting' element={<Voting />} />
+                    <Route path='*' element={<NotFound />} />
+                </Routes>
 
-            <Footer></Footer>
+                <Footer></Footer>
+
+            </div>
         </BrowserRouter>
     );
 }
