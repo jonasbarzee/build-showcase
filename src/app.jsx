@@ -14,7 +14,6 @@ export default function App() {
 
         <BrowserRouter>
             <Header></Header>
-            <Footer></Footer>
 
             <Routes>
                 <Route path='/' element={<Login />} exact />
@@ -23,6 +22,8 @@ export default function App() {
                 <Route path='/voting' element={<Voting />} />
                 <Route path='*' element={<NotFound />} />
             </Routes>
+
+            <Footer></Footer>
         </BrowserRouter>
     );
 }
