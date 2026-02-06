@@ -13,7 +13,7 @@ export function Footer() {
                         <div>
                             <dialog id="postDialog">
                                 <label className="form-label">Post your tinkering projects here</label>
-                                <textarea className="form-control" defaultValue="Put the text for your post here<"></textarea>
+                                <textarea className="form-control" placeholder="Put the text for your post here<"></textarea>
                                 <button type="button" id="submitPost" className="btn btn-primary">post</button>
                                 <button type="button" id="closePostDialog" className="btn btn-secondary"
                                     onClick={() => document.querySelector('#postDialog').close()}>close</button>
