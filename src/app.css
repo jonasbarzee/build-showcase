@@ -14,6 +14,11 @@
     --text-grey: #36454F;
 }
 
+html, body, #root {
+    height: 100%;
+    margin: 0;
+}
+
 .app-container {
     display: flex;
     flex-direction: column;

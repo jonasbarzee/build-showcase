@@ -13,15 +13,15 @@ export function Login() {
                                     <h2>Login</h2>
                                     <div className="mb-3">
                                         {/* <!-- Includes validation--> */}
-                                        <label for="username" className="form-label">Username</label>
-                                        <input type="text" id="username" name="username" autocomplete="username" placeholder="required"
+                                        <label htmlFor="username" className="form-label">Username</label>
+                                        <input type="text" id="username" name="username" autoComplete="username" placeholder="required"
                                             required className="form-control" />
                                     </div>
 
                                     <div className="mb-3">
-                                        <label for="password" className="form-label">Password</label>
+                                        <label htmlFor="password" className="form-label">Password</label>
                                         <input type="password" id="password" name="password" required pattern="[^\s]+"
-                                            placeholder="required" aria-describedby="hint" autocomplete="current-password" className="form-control" />
+                                            placeholder="required" aria-describedby="hint" autoComplete="current-password" className="form-control" />
                                         <p id="hint">Password cannot include any spaces</p>
                                         <p>This section is my login placeholder as it doesn't authenticate through a database yet
                                         </p>
