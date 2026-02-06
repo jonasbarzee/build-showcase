@@ -7,12 +7,14 @@ import { Trending } from './trending/trending';
 import { Voting } from './voting/voting';
 import { Login } from './login/login';
 import { Header } from './components/Header';
+import { Footer } from './components/Footer';
 
 export default function App() {
     return (
 
         <BrowserRouter>
             <Header></Header>
+            <Footer></Footer>
 
             <Routes>
                 <Route path='/' element={<Login />} exact />
