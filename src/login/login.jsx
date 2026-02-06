@@ -1,9 +1,40 @@
 import React from 'react';
 
 export function Login() {
-  return (
-    <main className="container-fluid bg-secondary text-center">
-      <div>login displayed here</div>
-    </main>
-  );
+    return (
+        <main>
+            <section>
+                {/* <!--Username and password input boxes--> */}
+                <form action={() => alert("You are now logged in")}>
+                    <fieldset>
+                        <div className="continer">
+                            <div className="row justify-content-center">
+                                <div className="col-md-6 col-lg-4">
+                                    <h2>Login</h2>
+                                    <div className="mb-3">
+                                        {/* <!-- Includes validation--> */}
+                                        <label for="username" className="form-label">Username</label>
+                                        <input type="text" id="username" name="username" autocomplete="username" placeholder="required"
+                                            required className="form-control" />
+                                    </div>
+
+                                    <div className="mb-3">
+                                        <label for="password" className="form-label">Password</label>
+                                        <input type="password" id="password" name="password" required pattern="[^\s]+"
+                                            placeholder="required" aria-describedby="hint" autocomplete="current-password" className="form-control" />
+                                        <p id="hint">Password cannot include any spaces</p>
+                                        <p>This section is my login placeholder as it doesn't authenticate through a database yet
+                                        </p>
+                                        <button type="submit" className="btn btn-primary"> sign in </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    {/* <!-- Submit form with POST method and enctype="multipart/form-data" to send file contents. --> */}
+                </form>
+            </section>
+        </main>
+    );
 }

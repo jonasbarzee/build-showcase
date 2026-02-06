@@ -4,7 +4,7 @@ export function Gallery() {
     return (
         <main className="flex-grow-1">
             <section>
-                <div className="continer">
+                <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-md-6 col-lg-4">
 
