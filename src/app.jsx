@@ -6,8 +6,8 @@ import { Gallery } from './gallery/gallery';
 import { Trending } from './trending/trending';
 import { Voting } from './voting/voting';
 import { Login } from './login/login';
-import { Header } from './components/Header';
-import { Footer } from './components/Footer';
+import { Header } from './header/header';
+import { Footer } from './footer/footer';
 
 export default function App() {
     return (
@@ -21,7 +21,6 @@ export default function App() {
                     <Route path='/gallery' element={<Gallery />} />
                     <Route path='/trending' element={<Trending />} />
                     <Route path='/voting' element={<Voting />} />
-                    <Route path='/login' element={<Login />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
 
