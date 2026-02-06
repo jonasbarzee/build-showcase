@@ -7,6 +7,7 @@ export function Header() {
             <nav className="d-flex flex-wrap align-items-center justify-content-between border-bottom gap-4 p-3">
                 <img src="TinkerVote.png" alt="TinkerVote Logo" style={{ height: 50 }} />
                 <div className="d-flex flex-wrap gap-3 px-2 justify-content-cetner">
+                    <NavLink className='nav-link' to='login'>Login</NavLink>
                     <NavLink className='nav-link' to='voting'>Voting</NavLink>
                     <NavLink className='nav-link' to='trending'>Trending</NavLink>
                     <NavLink className='nav-link' to='gallery'>Gallery</NavLink>

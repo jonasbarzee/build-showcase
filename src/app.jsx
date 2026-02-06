@@ -21,6 +21,7 @@ export default function App() {
                     <Route path='/gallery' element={<Gallery />} />
                     <Route path='/trending' element={<Trending />} />
                     <Route path='/voting' element={<Voting />} />
+                    <Route path='/login' element={<Login />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
 
