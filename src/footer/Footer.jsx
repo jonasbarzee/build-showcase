@@ -1,6 +1,10 @@
 import React from 'react';
+import { useUser } from '../UserContext';
 
 export function Footer() {
+
+    const { logout } = useUser();
+
     return (
         <footer>
             <div className="container">
@@ -30,7 +34,7 @@ export function Footer() {
                                 onClick={() => document.querySelector('#settingsDialog').showModal()}>
                                 settings &#x2699;</button>
 
-                            <button type="button" className="btn btn-primary" onClick={() => alert("You are now logged out")}>
+                            <button type="button" className="btn btn-primary" onClick={(e) => logout(e)}>
                                 logout &#8592;</button>
                         </div>
                     </div>

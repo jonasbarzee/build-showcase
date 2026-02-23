@@ -1,21 +1,27 @@
 import React, { useState } from 'react';
-import { useLocalStorage } from '../../useLocalStorage';
+import { useLocalStorage } from '../hooks/useLocalStorage';
+import { useUser } from '../UserContext';
 
 export function Login() {
 
-    const [username, setUsername] = useLocalStorage('username', '');
-    const [input, setInput] = useState('');
 
-    const handleLogin = (e) => {
+    const { login } = useUser();
+    const [username, setUsernameBox] = useState('');
+    const [password, setPasswordBox] = useState('');
+
+    const handleSubmit = (e) => {
         e.preventDefault();
-        setUsername(input);
+        login(username, password);
+        setUsernameBox('');
+        setPasswordBox('');
     };
+
 
     return (
         <main>
             <section>
                 {/* <!--Username and password input boxes--> */}
-                <form onSubmit={handleLogin}>
+                <form onSubmit={handleSubmit}>
                     <fieldset>
                         <div className="continer">
                             <div className="row justify-content-center">
@@ -26,15 +32,15 @@ export function Login() {
                                         <label htmlFor="username" className="form-label">Username</label>
                                         <input type="text" id="username" name="username" autoComplete="username" placeholder="required"
                                             required className="form-control"
-                                            value={input}
-                                            onChange={(e) => setInput(e.target.value)}
+                                            value={username}
+                                            onChange={(e) => setUsernameBox(e.target.value)}
                                         />
                                     </div>
 
                                     <div className="mb-3">
                                         <label htmlFor="password" className="form-label">Password</label>
                                         <input type="password" id="password" name="password" required pattern="[^\s]+"
-                                            placeholder="required" aria-describedby="hint" autoComplete="current-password" className="form-control" />
+                                            placeholder="required" aria-describedby="hint" autoComplete="current-password" className="form-control" value={password} onChange={(e) => setPasswordBox(e.target.value)} />
                                         <p id="hint">Password cannot include any spaces</p>
                                         <p>This section is my login placeholder as it doesn't authenticate through a database yet
                                         </p>

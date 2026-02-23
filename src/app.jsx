@@ -8,23 +8,28 @@ import { Voting } from './voting/voting';
 import { Login } from './login/login';
 import { Header } from './header/header';
 import { Footer } from './footer/footer';
+import { UserProvider } from './UserContext';
 
 export default function App() {
     return (
         <BrowserRouter>
             <div className='app-container'>
-                <Header></Header>
 
-                <Routes>
-                    <Route path='/' element={<Login />} exact />
-                    <Route path='/gallery' element={<Gallery />} />
-                    <Route path='/trending' element={<Trending />} />
-                    <Route path='/voting' element={<Voting />} />
-                    <Route path='*' element={<NotFound />} />
-                </Routes>
+                <UserProvider>
 
-                <Footer></Footer>
+                    <Header></Header>
 
+                    <Routes>
+                        <Route path='/' element={<Login />} exact />
+                        <Route path='/gallery' element={<Gallery />} />
+                        <Route path='/trending' element={<Trending />} />
+                        <Route path='/voting' element={<Voting />} />
+                        <Route path='*' element={<NotFound />} />
+                    </Routes>
+
+                    <Footer></Footer>
+
+                </UserProvider>
             </div>
         </BrowserRouter>
     );

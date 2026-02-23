@@ -1,10 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useLocalStorage } from '../../useLocalStorage';
+import { useUser } from '../UserContext';
 
 export function Header() {
 
-    const [username] = useLocalStorage('username', 'Undefined');
+    const { username } = useUser();
 
     return (
         <header>
@@ -21,7 +21,7 @@ export function Header() {
 
 
                 <div className="user-info text-end mt-2 mt-md-0">
-                    <span className="d-block d-md-inline">currently Logged In as</span>
+                    <span className="d-block d-md-inline">currently Logged In as </span>
                     <strong>{username}</strong>
                 </div>
             </nav>
