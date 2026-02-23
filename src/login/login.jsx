@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useLocalStorage } from '../../useLocalStorage';
 
 export function Login() {
+
+    const [username, setUsername] = useLocalStorage('username', '');
+    const [input, setInput] = useState('');
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+        setUsername(input);
+    };
+
     return (
         <main>
             <section>
                 {/* <!--Username and password input boxes--> */}
-                <form action={() => alert("You are now logged in")}>
+                <form onSubmit={handleLogin}>
                     <fieldset>
                         <div className="continer">
                             <div className="row justify-content-center">
@@ -15,7 +25,10 @@ export function Login() {
                                         {/* <!-- Includes validation--> */}
                                         <label htmlFor="username" className="form-label">Username</label>
                                         <input type="text" id="username" name="username" autoComplete="username" placeholder="required"
-                                            required className="form-control" />
+                                            required className="form-control"
+                                            value={input}
+                                            onChange={(e) => setInput(e.target.value)}
+                                        />
                                     </div>
 
                                     <div className="mb-3">

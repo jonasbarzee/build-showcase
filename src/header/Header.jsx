@@ -1,7 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useLocalStorage } from '../../useLocalStorage';
 
 export function Header() {
+
+    const [username] = useLocalStorage('username', 'Undefined');
+
     return (
         <header>
             <nav className="d-flex flex-wrap align-items-center justify-content-between border-bottom gap-4 p-3">
@@ -18,7 +22,7 @@ export function Header() {
 
                 <div className="user-info text-end mt-2 mt-md-0">
                     <span className="d-block d-md-inline">currently Logged In as</span>
-                    <strong>@YourUsername</strong>
+                    <strong>{username}</strong>
                 </div>
             </nav>
         </header>
