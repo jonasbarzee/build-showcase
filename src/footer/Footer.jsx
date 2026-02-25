@@ -1,9 +1,10 @@
 import React from 'react';
 import { useUser } from '../UserContext';
+import { Show } from '../utils/showOrHide'
 
 export function Footer() {
 
-    const { logout } = useUser();
+    const { username, isLoggedIn, logout } = useUser();
 
     return (
         <footer>
@@ -22,9 +23,6 @@ export function Footer() {
                                 <button type="button" id="closePostDialog" className="btn btn-secondary"
                                     onClick={() => document.querySelector('#postDialog').close()}>close</button>
                             </dialog>
-                            <button type="button" id="openPostDialog" className="btn btn-primary"
-                                onClick={() => document.querySelector('#postDialog').showModal()}>create post &#128393;</button>
-
                             <dialog id="settingsDialog">
                                 <p>Edit your settings here</p>
                                 <button type="button" id="closeSettingsDialog" className="btn btn-primary"
@@ -34,8 +32,14 @@ export function Footer() {
                                 onClick={() => document.querySelector('#settingsDialog').showModal()}>
                                 settings &#x2699;</button>
 
-                            <button type="button" className="btn btn-primary" onClick={(e) => logout(e)}>
-                                logout &#8592;</button>
+                            <Show when={isLoggedIn}>
+                                <button type="button" id="openPostDialog" className="btn btn-primary"
+                                    onClick={() => document.querySelector('#postDialog').showModal()}>create post &#128393;</button>
+
+                                <button type="button" className="btn btn-primary" onClick={(e) => logout(e)}>
+                                    logout &#8592;</button>
+
+                            </Show>
                         </div>
                     </div>
                 </div>
