@@ -2,13 +2,13 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Gallery } from './components/gallery/Gallery';
-import { Trending } from './components/trending/Trending';
-import { Voting } from './components/voting/Voting';
-import { Login } from './components/login/login';
-import { Header } from './components/header/header';
-import { Footer } from './components/footer/footer';
-import { UserProvider } from './UserContext';
+import { Gallery } from '@components/gallery/Gallery';
+import { Trending } from '@components/trending/Trending';
+import { Voting } from '@components/voting/Voting';
+import { Login } from '@components/login/login';
+import { Header } from '@components/header/header';
+import { Footer } from '@components/footer/footer';
+import { UserProvider } from '@src/UserContext';
 
 export default function App() {
     return (

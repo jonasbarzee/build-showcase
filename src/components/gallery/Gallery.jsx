@@ -1,6 +1,6 @@
 import React from 'react';
-import { usePosts } from '../../hooks/loadPosts';
-import { PostCard } from '../posts/PostCard';
+import { usePosts } from '@src/hooks/loadPosts';
+import { PostCard } from '@components/posts/PostCard';
 
 export function Gallery() {
 
