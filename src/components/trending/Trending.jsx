@@ -4,7 +4,7 @@ import { PostCard } from '../posts/PostCard';
 
 export function Trending() {
 
-    const { posts, loading } = usePosts();
+    const { posts, loading } = usePosts('trending');
 
     if (loading) return <p>Loading projects...</p>;
 

@@ -4,7 +4,7 @@ import { PostCard } from '../posts/PostCard';
 
 export function Gallery() {
 
-    const { posts, loading } = usePosts();
+    const { posts, loading } = usePosts('gallery');
     // use the load posts function here from utils
 
     if (loading) return <p>Loading projects...</p>;

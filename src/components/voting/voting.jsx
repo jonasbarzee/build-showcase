@@ -1,10 +1,9 @@
 import React from 'react';
 import { usePosts } from '../../hooks/loadPosts';
 import { PostCard } from '../posts/PostCard';
-
 export function Voting() {
 
-    const { posts, loading } = usePosts();
+    const { posts, loading } = usePosts('voting');
 
     if (loading) return <p>Loading projects...</p>;
 
