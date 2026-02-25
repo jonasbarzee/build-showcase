@@ -4,7 +4,7 @@ import { Show } from '@src/utils/showOrHide'
 
 export function Footer() {
 
-    const { username, isLoggedIn, logout } = useUser();
+    const { isLoggedIn, logout } = useUser();
 
     return (
         <footer>
@@ -34,7 +34,7 @@ export function Footer() {
 
                             <Show when={isLoggedIn}>
                                 <button type="button" id="openPostDialog" className="btn btn-primary"
-                                    onClick={() => document.querySelector('#postDialog').showModal()}>create post &#128393;</button>
+                                    onClick={() => document.querySelector('#postDialog').showModal()}>create post &#9998;</button>
 
                                 <button type="button" className="btn btn-primary" onClick={(e) => logout(e)}>
                                     logout &#8592;</button>
