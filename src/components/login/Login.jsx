@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useLocalStorage } from '../hooks/useLocalStorage';
-import { useUser } from '../UserContext';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { useUser } from '../../UserContext';
 
 export function Login() {
 

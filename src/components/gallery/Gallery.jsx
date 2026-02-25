@@ -1,20 +1,26 @@
 import React from 'react';
+import { usePosts } from '../../hooks/loadPosts';
+import { PostCard } from '../posts/PostCard';
 
-export function Trending() {
+export function Gallery() {
+
+    const { posts, loading } = usePosts();
+    // use the load posts function here from utils
+
+    if (loading) return <p>Loading projects...</p>;
+
     return (
         <main className="flex-grow-1">
             <section>
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-md-6 col-lg-4">
-
                             <article>
-                                <div>
-                                    <p><strong>@username</strong></p>
-                                    <p>Check out my awesome tinkering project! I've been working on this for weeks and
-                                        finally got it
-                                        working. It's a custom circuit board that controls LED strips with motion detection.
-                                    </p>
+                                <div id='posts-container'>
+
+                                    {posts.map(post => (
+                                        <PostCard key={post.id} post={post} />
+                                    ))}
                                     <p>^^^ Placeholder for content to be fetched from the database</p>
                                 </div>
                             </article>

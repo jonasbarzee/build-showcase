@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useUser } from '../UserContext';
-import { Show } from '../utils/showOrHide';
+import { useUser } from '../../UserContext';
+import { Show } from '../../utils/showOrHide';
 
 export function Header() {
 

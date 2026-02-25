@@ -1,6 +1,6 @@
 import React from 'react';
-import { useUser } from '../UserContext';
-import { Show } from '../utils/showOrHide'
+import { useUser } from '../../UserContext';
+import { Show } from '../../utils/showOrHide'
 
 export function Footer() {
 
