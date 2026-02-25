@@ -1,6 +1,6 @@
 import React, { createContext, useContext } from "react";
-import { useLocalStorage } from "./hooks/useLocalStorage";
 import { useNavigate } from "react-router-dom";
+import { useLocalStorage } from "@src/hooks/useLocalStorage";
 
 const UserContext = createContext();
 
