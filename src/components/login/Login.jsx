@@ -23,7 +23,7 @@ export function Login() {
                 {/* <!--Username and password input boxes--> */}
                 <form onSubmit={handleSubmit}>
                     <fieldset>
-                        <div className="continer">
+                        <div className="container">
                             <div className="row justify-content-center">
                                 <div className="col-md-6 col-lg-4">
                                     <h2>Login</h2>

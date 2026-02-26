@@ -11,7 +11,7 @@ export function Header() {
         <header>
             <nav className="d-flex flex-wrap align-items-center justify-content-between border-bottom gap-4 p-3">
                 <img src="TinkerVote.png" alt="TinkerVote Logo" style={{ height: 50 }} />
-                <div className="d-flex flex-wrap gap-3 px-2 justify-content-cetner">
+                <div className="d-flex flex-wrap gap-3 px-2 justify-content-center">
 
                     <Show when={!isLoggedIn}> <NavLink className='nav-link' to='/'>Login</NavLink> </Show>
 
