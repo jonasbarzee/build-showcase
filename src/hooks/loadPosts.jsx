@@ -11,6 +11,8 @@ export function usePosts(requestedCategory = 'all') {
 				// mocking database call with postsList
 				const postsList = [{
 					id: 1,
+					upvotes: 10,
+					downvotes: 10,
 					category: 'gallery',
 					author: 'You',
 					imageUrl: 'https://media.istockphoto.com/id/1282514444/photo/cow-udder-large-and-full-and-with-horns-in-the-green-pasture-and-a-blue-sky.jpg?s=612x612&w=0&k=20&c=a2TuO1u4H4wKW7aSizBh7Df8CLA70MEPTcadLfc35bk=',
@@ -18,6 +20,8 @@ export function usePosts(requestedCategory = 'all') {
 				},
 				{
 					id: 2,
+					upvotes: 10,
+					downvotes: 10,
 					category: 'gallery',
 					author: 'You',
 					imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4t2ZwOPQaboirYn2FR6LU_CKJBBwblx1qsw&s',
@@ -26,6 +30,8 @@ export function usePosts(requestedCategory = 'all') {
 				},
 				{
 					id: 3,
+					upvotes: 10,
+					downvotes: 10,
 					category: 'trending',
 					author: 'Not You',
 					imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0sOA9N5tXNCRWuSoihvRD4F4qPf6_30El1A&s',
@@ -33,6 +39,8 @@ export function usePosts(requestedCategory = 'all') {
 				},
 				{
 					id: 4,
+					upvotes: 10,
+					downvotes: 10,
 					category: 'trending',
 					author: 'Also Not You',
 					imageUrl: 'https://wallpapers.com/images/hd/funny-horse-pictures-cv9t06tu59f6pjb1.jpg',
@@ -40,6 +48,8 @@ export function usePosts(requestedCategory = 'all') {
 				},
 				{
 					id: 5,
+					upvotes: 10,
+					downvotes: 10,
 					category: 'voting',
 					author: 'Not You',
 					imageUrl: 'https://www.royalplantscape.com/cdn/shop/collections/Buy_Plants_Online_Cheap_Prices.jpg?v=1703681047',
@@ -47,6 +57,8 @@ export function usePosts(requestedCategory = 'all') {
 				},
 				{
 					id: 6,
+					upvotes: 10,
+					downvotes: 10,
 					category: 'voting',
 					author: "Surprise, it's Not You",
 					imageUrl: 'https://cdn.pixabay.com/photo/2024/05/27/20/08/technical-8792191_640.jpg',
