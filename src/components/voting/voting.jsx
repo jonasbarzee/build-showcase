@@ -25,8 +25,8 @@ export function Voting() {
                                 </article>
                                 <div>
                                     <p>Placeholder for websocket communication with upvote and downvote buttons</p>
-                                    <button type="button" className="btn btn-secondary">upvote &#8593;</button>
-                                    <button type="button" className="btn btn-secondary">downvote &#8595;</button>
+                                    <button type="button" className="btn btn-primary">upvote &#8593;</button>
+                                    <button type="button" className="btn btn-primary">downvote &#8595;</button>
                                 </div>
                             </div>
                         </div>

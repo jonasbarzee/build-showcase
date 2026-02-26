@@ -1,13 +1,18 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "@src/hooks/useLocalStorage";
 
 const UserContext = createContext();
 
 export function UserProvider({ children }) {
+
+	// build hooks for a valid login/session
 	const [username, setUsername] = useLocalStorage('username', '');
 	const [password, setPassword] = useLocalStorage('password', '');
+
+	// !! says that is username is '' then it is still false, username can't be '' to be true
 	const isLoggedIn = !!username;
+
 
 	const navigate = useNavigate();
 
@@ -24,8 +29,18 @@ export function UserProvider({ children }) {
 		navigate('/');
 	}
 
+	const [theme, setTheme] = useLocalStorage('theme', 'dark');
+
+	useEffect(() => {
+		document.documentElement.setAttribute('data-theme', theme);
+	}, [theme]);
+
+	const toggleTheme = () => {
+		setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+	};
+
 	return (
-		<UserContext.Provider value={{ username, isLoggedIn, login, logout }}>
+		<UserContext.Provider value={{ username, isLoggedIn, login, logout, theme, toggleTheme }}>
 			{children}
 		</UserContext.Provider>
 	);
