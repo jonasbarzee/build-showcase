@@ -1,12 +1,12 @@
 import React from 'react';
-import { usePosts } from '@src/hooks/loadPosts';
+import { usePosts } from '@/src/hooks/usePosts';
 import { PostCard } from '@components/posts/PostCard';
 
 export function Trending() {
 
-    const { posts, loading } = usePosts('trending');
+    const { filteredPosts, castVote, loading } = usePosts('trending');
 
-    if (loading) return <p>Loading projects...</p>;
+    // if (loading) return <p>Loading projects...</p>;
 
     return (
         <main className="flex-grow-1">
@@ -15,13 +15,14 @@ export function Trending() {
                     <div className="row justify-content-center">
                         <div className="col-md-6 col-lg-4">
                             <article>
-                                <div id='posts-container'>
 
-                                    {posts.map(post => (
+                                <div id='posts-container'>
+                                    {filteredPosts.map(post => (
                                         <PostCard key={post.id} post={post} />
                                     ))}
                                     <p>^^^ Placeholder for content to be fetched from the database</p>
                                 </div>
+
                             </article>
                         </div>
                     </div>

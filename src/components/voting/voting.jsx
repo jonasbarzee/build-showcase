@@ -1,11 +1,12 @@
 import React from 'react';
-import { usePosts } from '@src/hooks/loadPosts';
+import { usePosts } from '@/src/hooks/usePosts';
 import { PostCard } from '@components/posts/PostCard';
+
 export function Voting() {
 
-    const { posts, loading } = usePosts('voting');
+    const { filteredPosts, loading } = usePosts('voting');
 
-    if (loading) return <p>Loading projects...</p>;
+    // if (loading) return <p>Loading projects...</p>;
 
     return (
         <main className="flex-grow-1">
@@ -17,7 +18,7 @@ export function Voting() {
                                 <article>
                                     <div id='posts-container'>
 
-                                        {posts.map(post => (
+                                        {filteredPosts.map(post => (
                                             <PostCard key={post.id} post={post} />
                                         ))}
                                     </div>
