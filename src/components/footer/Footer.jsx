@@ -3,15 +3,31 @@ import { useUser } from '@src/UserContext';
 import { Show } from '@src/utils/showOrHide'
 import { Dialog } from '@components/footer/Dialog';
 import { useWeather } from '@/src/hooks/useWeather';
+import { usePostsData } from '@/src/PostContext';
 
 
 export function Footer() {
 
-    const { isLoggedIn, logout, theme, toggleTheme } = useUser();
+    const { username, isLoggedIn, logout, theme, toggleTheme } = useUser();
+    const { addPost } = usePostsData();
+    const { weather, loading } = useWeather();
 
     const [showSettings, setShowSettings] = useState(false);
-    const [showPost, setShowPost] = useState(false);
-    const { weather, loading } = useWeather();
+    const [showPostDialog, setShowPostDialog] = useState(false);
+    const [postContent, setPostContent] = useState('');
+
+    const handleSubmit = () => {
+        if (!postContent.trim()) return;
+
+        addPost({
+            author: username || 'Anonymous',
+            content: postContent,
+            imageUrl: 'placeholder',
+        });
+
+        setPostContent('');
+        setShowPostDialog(false);
+    }
 
     return (
         <footer>
@@ -32,10 +48,10 @@ export function Footer() {
                 </Dialog>
 
                 {/* CREATE POST DIALOG */}
-                <Dialog isOpen={showPost} onClose={() => setShowPost(false)} title='Create Post'>
+                <Dialog isOpen={showPostDialog} onClose={() => setShowPostDialog(false)} title='Create Post'>
                     <p>Post your tinkering projects here</p>
-                    <textarea className="form-control" placeholder="Put the text for your post here<"></textarea>
-                    <button type="button" id="submitPost" className="btn btn-primary">post</button>
+                    <textarea className="form-control mb-3" value={postContent} onChange={(e) => setPostContent(e.target.value)} placeholder="Describe your beloved project..." />
+                    <button type="button" id="submitPost" className="btn btn-primary" onClick={handleSubmit}>Post To Gallery</button>
                 </Dialog>
 
                 {/* BUTTONS IN FOOTER */}
@@ -50,7 +66,7 @@ export function Footer() {
                             {/* BUTTONS FOR FOOTER */}
                             <Show when={isLoggedIn}>
                                 <button type="button" id="openPostDialog" className="btn btn-primary"
-                                    onClick={() => setShowPost(true)}>create post &#9998;
+                                    onClick={() => setShowPostDialog(true)}>create post &#9998;
                                 </button>
 
                                 <button type="button" className="btn btn-primary" onClick={(e) => logout(e)}>

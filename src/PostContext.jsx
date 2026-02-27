@@ -6,6 +6,7 @@ const PostContext = createContext();
 export function PostProvider({ children }) {
 
 	const { isLoggedIn } = useUser();
+
 	// mocking inital database state with list of posts
 	const [posts, setPosts] = useState([
 		{
@@ -66,6 +67,18 @@ export function PostProvider({ children }) {
 		}
 	]);
 
+	const addPost = (newPostData) => {
+		const newPost = {
+			id: Date.now(),
+			upvotes: 0,
+			downvotes: 0,
+			category: 'gallery',
+			...newPostData
+		};
+
+		setPosts(prev => [newPost, ...prev]);
+	};
+
 	const castVote = (postId, type) => {
 		setPosts(prevPosts => prevPosts.map(post => {
 			if (post.id === postId) {
@@ -116,7 +129,7 @@ export function PostProvider({ children }) {
 
 
 	return (
-		<PostContext.Provider value={{ posts, castVote, rescindVote }}>
+		<PostContext.Provider value={{ posts, addPost, castVote, rescindVote }}>
 			{children}
 		</PostContext.Provider>
 	);
