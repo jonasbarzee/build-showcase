@@ -114,8 +114,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - I mocked out my weather api call, posts to be populated by the database, posting, voting websocket with intervals and timeouts, light and dark modes with local storage, not allowing users to see posts until logged in, logging in and logging out.
+- [x] **Hooks** - I used the useEffect and useState hooks in my .jsx files. Specifically I used it to make a custom hook that uses local storage that I reused multiple times. I also have other hooks throughout my code to help render the webpage content based on state.
 
 ## 🚀 Service deliverable
 
