@@ -10,6 +10,21 @@ export function UserProvider({ children }) {
 	const [username, setUsername] = useLocalStorage('username', '');
 	const [password, setPassword] = useLocalStorage('password', '');
 
+	// Tracking posts voted on to only allow one vote per post per user
+	const [votedPosts, setVotedPosts] = useLocalStorage('votedPosts', []);
+
+	const recordVote = (postId, type) => {
+		setVotedPosts(prev => [...prev, { postId, type }]);
+	};
+
+	const removeVote = (postIdToRemove) => {
+		setVotedPosts(prev => prev.filter(item => item.postId !== postIdToRemove));
+	};
+
+	const getExistingVote = (postIdToCheck) => {
+		return votedPosts.find(item => item.postId === postIdToCheck);
+	};
+
 	// !! says that is username is '' then it is still false, username can't be '' to be true
 	const isLoggedIn = !!username;
 
@@ -21,13 +36,14 @@ export function UserProvider({ children }) {
 		setPassword(password);
 		navigate('/trending');
 
-	}
+	};
 
 	const logout = () => {
 		setUsername('');
 		setPassword('');
+		setVotedPosts([]);
 		navigate('/');
-	}
+	};
 
 	const [theme, setTheme] = useLocalStorage('theme', 'dark');
 
@@ -40,7 +56,18 @@ export function UserProvider({ children }) {
 	};
 
 	return (
-		<UserContext.Provider value={{ username, isLoggedIn, login, logout, theme, toggleTheme }}>
+		<UserContext.Provider value={{
+			username,
+			isLoggedIn,
+			login,
+			logout,
+			theme,
+			toggleTheme,
+			recordVote,
+			removeVote,
+			getExistingVote,
+			votedPosts,
+		}}>
 			{children}
 		</UserContext.Provider>
 	);

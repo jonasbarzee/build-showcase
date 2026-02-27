@@ -80,6 +80,20 @@ export function PostProvider({ children }) {
 		console.log(`User votes ${type} on post ${postId}`);
 	};
 
+	const rescindVote = (postId, type) => {
+		setPosts(prevPosts => prevPosts.map(post => {
+			if (post.id === postId) {
+				return {
+					...post,
+					[type]: Math.max(0, post[type] - 1)
+				};
+			}
+			return post;
+		}));
+
+		console.log(`User rescinded their vote on post ${postId}`);
+	};
+
 	useEffect(() => {
 
 		if (!isLoggedIn) return;
@@ -102,7 +116,7 @@ export function PostProvider({ children }) {
 
 
 	return (
-		<PostContext.Provider value={{ posts, castVote }}>
+		<PostContext.Provider value={{ posts, castVote, rescindVote }}>
 			{children}
 		</PostContext.Provider>
 	);

@@ -84,6 +84,20 @@ dialog .btn{
     transition: all 0.3s ease;
 }
 
+.post-card button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: grayscale(1);
+}
+
+.post-card.voted:: after {
+    content: "Vote Recorded";
+    display: block;
+    font-size: 0.8rem;
+    color: var(--primary-orange);
+    margin-top: 5px;
+}
+
 .nav-link {
     font-weight: bold;
     font-size: 1.5rem;
