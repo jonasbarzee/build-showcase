@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useUser } from '@src/UserContext';
 import { Show } from '@src/utils/showOrHide'
 import { Dialog } from '@components/footer/Dialog';
+import { useWeather } from '@/src/hooks/useWeather';
 
 
 export function Footer() {
@@ -10,13 +11,16 @@ export function Footer() {
 
     const [showSettings, setShowSettings] = useState(false);
     const [showPost, setShowPost] = useState(false);
+    const { weather, loading } = useWeather();
 
     return (
         <footer>
             <div className="container">
 
-                <div>
-                    <p>Placeholder for 3rd party weather API call</p>
+                <div className='weather-widget'>
+                    {loading ? (<span>Detecting local climate...</span>
+                    ) : (
+                        <span>{weather.icon} {weather.temp}F - {weather.condition}</span>)}
                 </div>
                 {/* SETTINGS DIALOG */}
                 <Dialog isOpen={showSettings} onClose={() => setShowSettings(false)} title='Settings'>

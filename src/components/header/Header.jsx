@@ -28,7 +28,7 @@ export function Header() {
                 <div className="user-info text-end mt-2 mt-md-0">
 
                     <Show when={isLoggedIn}>
-                        <span className="d-block d-md-inline">currently Logged In as </span>
+                        <span className="d-block d-md-inline"> Logged In as </span>
                         <strong>{username}</strong>
                     </Show>
                 </div>
