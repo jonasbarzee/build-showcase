@@ -1,13 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useLocalStorage } from '@src/hooks/useLocalStorage';
+import { useUser } from '@src/UserContext';
 
 export function Login() {
+
+
+    const { login } = useUser();
+    const [username, setUsernameBox] = useState('');
+    const [password, setPasswordBox] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        login(username, password);
+        setUsernameBox('');
+        setPasswordBox('');
+    };
+
+
     return (
         <main>
             <section>
                 {/* <!--Username and password input boxes--> */}
-                <form action={() => alert("You are now logged in")}>
+                <form onSubmit={handleSubmit}>
                     <fieldset>
-                        <div className="continer">
+                        <div className="container">
                             <div className="row justify-content-center">
                                 <div className="col-md-6 col-lg-4">
                                     <h2>Login</h2>
@@ -15,13 +31,16 @@ export function Login() {
                                         {/* <!-- Includes validation--> */}
                                         <label htmlFor="username" className="form-label">Username</label>
                                         <input type="text" id="username" name="username" autoComplete="username" placeholder="required"
-                                            required className="form-control" />
+                                            required className="form-control"
+                                            value={username}
+                                            onChange={(e) => setUsernameBox(e.target.value)}
+                                        />
                                     </div>
 
                                     <div className="mb-3">
                                         <label htmlFor="password" className="form-label">Password</label>
                                         <input type="password" id="password" name="password" required pattern="[^\s]+"
-                                            placeholder="required" aria-describedby="hint" autoComplete="current-password" className="form-control" />
+                                            placeholder="required" aria-describedby="hint" autoComplete="current-password" className="form-control" value={password} onChange={(e) => setPasswordBox(e.target.value)} />
                                         <p id="hint">Password cannot include any spaces</p>
                                         <p>This section is my login placeholder as it doesn't authenticate through a database yet
                                         </p>

@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			// DON'T CHANGE, IF YOU DO YOU NEED TO ALSO UPDATE vite.config.js in root
+			// these map file import aliases
+			"@/*": ["./*"],
+			"@/src/*": ["./src/*"],
+			"@components/*": ["./src/components/*"]
+		}
+	},
+	"include": ["src"],
+	"exclude": ["node_modules"]
+}

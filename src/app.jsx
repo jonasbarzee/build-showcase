@@ -2,29 +2,50 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Gallery } from './gallery/gallery';
-import { Trending } from './trending/trending';
-import { Voting } from './voting/voting';
-import { Login } from './login/login';
-import { Header } from './header/header';
-import { Footer } from './footer/footer';
+
+{/* COMPONENTS */ }
+import { Gallery } from '@components/gallery/Gallery';
+import { Trending } from '@components/trending/Trending';
+import { Voting } from '@components/voting/Voting';
+import { Login } from '@components/login/Login';
+import { Header } from '@components/header/Header';
+import { Footer } from '@components/footer/Footer';
+import { UserProvider } from '@src/UserContext';
+import { PostProvider } from '@src/PostContext';
+import { ProtectedRoute } from '@src/routes/ProtectedRoute';
+import { PublicOnlyRoute } from '@src/routes/PublicOnlyRoute';
 
 export default function App() {
     return (
         <BrowserRouter>
             <div className='app-container'>
-                <Header></Header>
 
-                <Routes>
-                    <Route path='/' element={<Login />} exact />
-                    <Route path='/gallery' element={<Gallery />} />
-                    <Route path='/trending' element={<Trending />} />
-                    <Route path='/voting' element={<Voting />} />
-                    <Route path='*' element={<NotFound />} />
-                </Routes>
+                <UserProvider>
+                    <PostProvider>
 
-                <Footer></Footer>
+                        <Header></Header>
 
+                        <Routes>
+                            <Route path='/' element={
+                                <PublicOnlyRoute> <Login /> </PublicOnlyRoute>
+                            } exact />
+
+                            <Route path='/gallery' element={
+                                <ProtectedRoute> <Gallery /> </ProtectedRoute>
+                            } />
+                            <Route path='/trending' element={
+                                <ProtectedRoute> <Trending /> </ProtectedRoute>
+                            } />
+                            <Route path='/voting' element={
+                                <ProtectedRoute> <Voting /> </ProtectedRoute>
+                            } />
+
+                            <Route path='*' element={<NotFound />} />
+                        </Routes>
+
+                        <Footer></Footer>
+                    </PostProvider>
+                </UserProvider>
             </div>
         </BrowserRouter>
     );
