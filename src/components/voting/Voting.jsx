@@ -4,9 +4,7 @@ import { PostCard } from '@components/posts/PostCard';
 
 export function Voting() {
 
-    const { filteredPosts, loading } = usePosts('voting');
-
-    // if (loading) return <p>Loading projects...</p>;
+    const { filteredPosts } = usePosts('voting');
 
     return (
         <main className="flex-grow-1">

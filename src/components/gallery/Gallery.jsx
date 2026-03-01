@@ -4,10 +4,8 @@ import { PostCard } from '@components/posts/PostCard';
 
 export function Gallery() {
 
-    const { filteredPosts, loading, castVote } = usePosts('gallery');
-    // use the load posts function here from utils
+    const { filteredPosts } = usePosts('gallery');
 
-    // if (loading) return <p>Loading projects...</p>;
     return (
         <main className="flex-grow-1">
             <section>

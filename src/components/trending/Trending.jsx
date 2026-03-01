@@ -4,9 +4,8 @@ import { PostCard } from '@components/posts/PostCard';
 
 export function Trending() {
 
-    const { filteredPosts, castVote, loading } = usePosts('trending');
+    const { filteredPosts } = usePosts('trending');
 
-    // if (loading) return <p>Loading projects...</p>;
 
     return (
         <main className="flex-grow-1">
