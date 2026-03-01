@@ -33,14 +33,12 @@ export function UserProvider({ children }) {
 
 	const login = (username, password) => {
 		setUsername(username);
-		setPassword(password);
 		navigate('/trending');
 
 	};
 
 	const logout = () => {
 		setUsername('');
-		setPassword('');
 		setVotedPosts([]);
 		navigate('/');
 	};
