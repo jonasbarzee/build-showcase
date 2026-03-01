@@ -8,7 +8,6 @@ export function UserProvider({ children }) {
 
 	// build hooks for a valid login/session
 	const [username, setUsername] = useLocalStorage('username', '');
-	const [password, setPassword] = useLocalStorage('password', '');
 
 	// Tracking posts voted on to only allow one vote per post per user
 	const [votedPosts, setVotedPosts] = useLocalStorage('votedPosts', []);
@@ -31,7 +30,7 @@ export function UserProvider({ children }) {
 
 	const navigate = useNavigate();
 
-	const login = (username, password) => {
+	const login = (username) => {
 		setUsername(username);
 		navigate('/trending');
 
