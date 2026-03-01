@@ -90,7 +90,7 @@ dialog .btn{
     filter: grayscale(1);
 }
 
-.post-card.voted:: after {
+.post-card.voted::after {
     content: "Vote Recorded";
     display: block;
     font-size: 0.8rem;
@@ -117,7 +117,7 @@ dialog .btn{
 .btn-primary:hover {
     background-color: var(--dark-orange) !important;
     box-shadow: 0 0 15px 5px rgba(255, 140, 0, 0.6);
-    translate: translateY(-2px);
+    transform: translateY(-2px);
 }
 
 .btn-secondary {
@@ -128,7 +128,7 @@ dialog .btn{
 .btn-secondary:hover {
     background-color: var(--primary-orange) !important;
     box-shadow: 0 0 15px 5px rgba(255, 140, 0, 0.6);
-    translate: translateY(-2px);
+    transform: translateY(-2px);
 }
 
 body {
