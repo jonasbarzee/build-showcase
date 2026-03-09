@@ -3,7 +3,7 @@
 .swanky-and-moo-moo-regular {
     font-family: "Swanky and Moo Moo", cursive;
     font-weight: 400;
-    font-style: regular;
+    font-style: normal;
 }
 
 :root[data-theme='light'] {

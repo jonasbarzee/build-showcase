@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocalStorage } from '@src/hooks/useLocalStorage';
+import { useNavigate } from 'react-router-dom';
 import { useUser } from '@src/UserContext';
 
 export function Login() {
@@ -8,12 +8,14 @@ export function Login() {
     const { login } = useUser();
     const [username, setUsernameBox] = useState('');
     const [password, setPasswordBox] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         login(username, password);
         setUsernameBox('');
         setPasswordBox('');
+        navigate('/trending');
     };
 
 

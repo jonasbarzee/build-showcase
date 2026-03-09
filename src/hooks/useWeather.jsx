@@ -19,7 +19,6 @@ export function useWeather() {
                 const randomWeather = mockWeatherResponses[Math.floor(Math.random() * mockWeatherResponses.length)];
 
                 setWeather(randomWeather);
-                setLoading(true);
             } catch (error) {
                 console.error("Weather service failed", error);
             } finally {
