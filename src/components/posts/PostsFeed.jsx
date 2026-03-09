@@ -2,11 +2,9 @@ import React from 'react';
 import { usePosts } from '@/src/hooks/usePosts';
 import { PostCard } from '@components/posts/PostCard';
 
-export function Voting() {
+export function PostsFeed({ category }) {
 
-    const { filteredPosts, loading } = usePosts('voting');
-
-    // if (loading) return <p>Loading projects...</p>;
+    const { filteredPosts } = usePosts(category);
 
     return (
         <main className="flex-grow-1">
@@ -14,16 +12,17 @@ export function Voting() {
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-md-6 col-lg-4">
-                            <div>
-                                <article>
-                                    <div id='posts-container'>
+                            <article>
+                                <div className='posts-container'>
 
-                                        {filteredPosts.map(post => (
+                                    {filteredPosts.length === 0 ?
+                                        <p>No Posts Yet.</p>
+                                        : filteredPosts.map(post => (
                                             <PostCard key={post.id} post={post} />
                                         ))}
-                                    </div>
-                                </article>
-                            </div>
+                                    <p>^^^ Placeholder for content to be fetched from the database</p>
+                                </div>
+                            </article>
                         </div>
                     </div>
                 </div>
