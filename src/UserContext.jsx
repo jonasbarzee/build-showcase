@@ -7,8 +7,8 @@ const UserContext = createContext();
 export function UserProvider({ children }) {
 
     // build hooks for a valid login/session
-    // const [username, setUsername] = useLocalStorage('username', '');
-    const [username, setUsername] = useState('');
+    const [username, setUsername] = useLocalStorage('username', '');
+    // const [username, setUsername] = useState('');
 
     // Tracking posts voted on to only allow one vote per post per user
     const storageKey = username ? `votedPosts_${username}` : 'votedPosts_guest';
@@ -32,7 +32,7 @@ export function UserProvider({ children }) {
     // password is still discarded right now just because it is a place holder
     // TODO add password authentication in the database phase
 
-    async function createUser() {
+    async function createUser(username, password) {
         const response = await fetch('/api/auth/create', {
             method: 'post',
             body: JSON.stringify({ username: username, password: password }),
@@ -43,7 +43,8 @@ export function UserProvider({ children }) {
         if (response?.status === 200) {
             localStorage.setItem('username', username);
             console.log(`${username} is now authenticated`);
-            isLoggedIn = true
+            isLoggedIn = true;
+            setUsername(username);
         } else {
             const body = await response.json();
             console.log(`Error: ${body}`);

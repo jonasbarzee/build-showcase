@@ -13,7 +13,7 @@ export function Login() {
     const handleSubmit = (e) => {
         e.preventDefault();
         // login(username, password);
-        createUser()
+        createUser(username, password);
         setUsernameBox('');
         setPasswordBox('');
         navigate('/trending');
