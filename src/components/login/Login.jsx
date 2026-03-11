@@ -5,14 +5,15 @@ import { useUser } from '@src/UserContext';
 export function Login() {
 
 
-    const { login } = useUser();
+    const { login, createUser } = useUser();
     const [username, setUsernameBox] = useState('');
     const [password, setPasswordBox] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        login(username, password);
+        // login(username, password);
+        createUser()
         setUsernameBox('');
         setPasswordBox('');
         navigate('/trending');
