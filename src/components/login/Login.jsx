@@ -5,18 +5,29 @@ import { useUser } from '@src/UserContext';
 export function Login() {
 
 
-    const { login, createUser } = useUser();
+    const { isLoggedIn, createUser, loginUser } = useUser();
     const [username, setUsernameBox] = useState('');
     const [password, setPasswordBox] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleCreate = (e) => {
         e.preventDefault();
-        // login(username, password);
         createUser(username, password);
         setUsernameBox('');
         setPasswordBox('');
-        navigate('/trending');
+        if (isLoggedIn) {
+            navigate('/trending');
+        }
+    };
+
+    const handleSignIn = (e) => {
+        e.preventDefault();
+        loginUser(username, password);
+        setUsernameBox('');
+        setPasswordBox('');
+        if (isLoggedIn) {
+            navigate('/trending');
+        }
     };
 
 
@@ -24,7 +35,7 @@ export function Login() {
         <main>
             <section>
                 {/* <!--Username and password input boxes--> */}
-                <form onSubmit={handleSubmit}>
+                <form>
                     <fieldset>
                         <div className="container">
                             <div className="row justify-content-center">
@@ -47,7 +58,8 @@ export function Login() {
                                         <p id="hint">Password cannot include any spaces</p>
                                         <p>This section is my login placeholder as it doesn't authenticate through a database yet
                                         </p>
-                                        <button type="submit" className="btn btn-primary"> sign in </button>
+                                        <button type="submit" className="btn btn-primary" onClick={(e) => handleSignIn(e)}> sign in </button>
+                                        <button type="submit" className="btn btn-primary" onClick={(e) => handleCreate(e)}> create </button>
                                     </div>
                                 </div>
                             </div>

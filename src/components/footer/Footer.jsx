@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import { useUser } from '@src/UserContext';
 import { Show } from '@src/utils/showOrHide'
 import { WeatherWidget } from './WeatherWidget';
@@ -9,8 +8,7 @@ import { CreatePostDialog } from './CreatePostDialog';
 
 export function Footer() {
 
-    const { isLoggedIn, logout, } = useUser();
-    const navigate = useNavigate();
+    const { isLoggedIn, logoutUser, } = useUser();
 
     return (
         <footer>
@@ -25,7 +23,7 @@ export function Footer() {
 
                         {/* BUTTONS FOR FOOTER */}
                         <Show when={isLoggedIn}>
-                            <button type="button" className="btn btn-primary" onClick={(e) => { logout(e); navigate('/'); }}>
+                            <button type="button" className="btn btn-primary" onClick={(e) => { logoutUser(e); }}>
                                 logout &#8592;
                             </button>
                         </Show>

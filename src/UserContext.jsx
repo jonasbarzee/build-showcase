@@ -7,8 +7,9 @@ const UserContext = createContext();
 export function UserProvider({ children }) {
 
     // build hooks for a valid login/session
-    const [username, setUsername] = useLocalStorage('username', '');
-    // const [username, setUsername] = useState('');
+    // const [username, setUsername] = useLocalStorage('username', '');
+    const [username, setUsername] = useState(localStorage.getItem('username') || '');
+    const isLoggedIn = !!username;
 
     // Tracking posts voted on to only allow one vote per post per user
     const storageKey = username ? `votedPosts_${username}` : 'votedPosts_guest';
@@ -26,9 +27,6 @@ export function UserProvider({ children }) {
         return votedPosts.find(item => item.postId === postIdToCheck);
     };
 
-    // !! says that is username is '' then it is still false, username can't be '' to be true
-    let isLoggedIn = false;
-
     // password is still discarded right now just because it is a place holder
     // TODO add password authentication in the database phase
 
@@ -43,7 +41,6 @@ export function UserProvider({ children }) {
         if (response?.status === 200) {
             localStorage.setItem('username', username);
             console.log(`${username} is now authenticated`);
-            isLoggedIn = true;
             setUsername(username);
         } else {
             const body = await response.json();
@@ -51,14 +48,34 @@ export function UserProvider({ children }) {
         }
     }
 
-    const login = (username) => {
-        setUsername(username);
-    };
+    async function loginUser(username, password) {
+        const response = await fetch('/api/auth/login', {
+            method: 'post',
+            body: JSON.stringify({ username: username, password: password }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        });
+        if (response?.status === 200) {
+            localStorage.setItem('username', username);
+            console.log(`${username} is now authenticated`);
+            setUsername(username);
+        } else {
+            const body = await response.json();
+            console.log(`Error: ${body}`);
+        }
+    }
 
-    const logout = () => {
-        setUsername('');
-        setVotedPosts([]);
-    };
+    async function logoutUser() {
+        fetch('/api/auth/logout', {
+            method: 'delete',
+        }).catch(() => {
+
+        }).finally(() => {
+            localStorage.removeItem('username');
+            setUsername('');
+        });
+    }
 
     const [theme, setTheme] = useLocalStorage('theme', 'dark');
 
@@ -74,8 +91,6 @@ export function UserProvider({ children }) {
         <UserContext.Provider value={{
             username,
             isLoggedIn,
-            login,
-            logout,
             theme,
             toggleTheme,
             recordVote,
@@ -83,6 +98,8 @@ export function UserProvider({ children }) {
             getExistingVote,
             votedPosts,
             createUser,
+            loginUser,
+            logoutUser,
         }}>
             {children}
         </UserContext.Provider>

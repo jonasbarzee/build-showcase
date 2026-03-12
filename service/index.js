@@ -75,11 +75,15 @@ const verifyAuth = async (req, res, next) => {
     }
 };
 
+// TODO Repurpose this function for getting the posts only if a user
+// is authenticated through their token
 // GetScores
 apiRouter.get('/scores', verifyAuth, (_req, res) => {
     res.send(scores);
 });
 
+// TODO Repurpose this function for submitting a post only if a user
+// is authenticated through their token
 // SubmitScore
 apiRouter.post('/score', verifyAuth, (req, res) => {
     scores = updateScores(req.body);
