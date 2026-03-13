@@ -22,7 +22,8 @@ app.use(cookieParser());
 
 // Serve up the front-end static content hosting
 // change this to look into the dist directory when building with vite
-app.use(express.static(path.join(__dirname, '..')));
+// app.use(express.static(path.join(__dirname, '..')));
+app.use(express.static(path.join(__dirname, '../dist')));
 
 // Router for service endpoints
 var apiRouter = express.Router();
@@ -98,9 +99,14 @@ app.use(function(err, req, res, next) {
 // Return the application's default page if the path is unknown
 // using ".." to search one directory up from where index.js is to find my index.html file
 // change this path to point to the dist folder for production when vite bundles and builds my web app
+// app.use((_req, res) => {
+//     res.sendFile(path.join(__dirname, '..', 'index.html'));
+// });
 app.use((_req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'index.html'));
+    res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
+
+
 
 // updateScores considers a new score for inclusion in the high scores.
 function updatePosts(newPost) {
