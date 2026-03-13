@@ -9,7 +9,7 @@ const authCookieName = 'token';
 
 // The scores and users are saved in memory and disappear whenever the service is restarted.
 let users = [];
-let scores = [];
+let posts = [];
 
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -78,16 +78,16 @@ const verifyAuth = async (req, res, next) => {
 // TODO Repurpose this function for getting the posts only if a user
 // is authenticated through their token
 // GetScores
-apiRouter.get('/scores', verifyAuth, (_req, res) => {
-    res.send(scores);
+apiRouter.get('/posts', verifyAuth, (_req, res) => {
+    res.send(posts);
 });
 
 // TODO Repurpose this function for submitting a post only if a user
 // is authenticated through their token
 // SubmitScore
-apiRouter.post('/score', verifyAuth, (req, res) => {
-    scores = updateScores(req.body);
-    res.send(scores);
+apiRouter.post('/posts', verifyAuth, (req, res) => {
+    posts = updatePosts(req.body);
+    res.send(posts);
 });
 
 // Default error handler
@@ -103,25 +103,9 @@ app.use((_req, res) => {
 });
 
 // updateScores considers a new score for inclusion in the high scores.
-function updateScores(newScore) {
-    let found = false;
-    for (const [i, prevScore] of scores.entries()) {
-        if (newScore.score > prevScore.score) {
-            scores.splice(i, 0, newScore);
-            found = true;
-            break;
-        }
-    }
-
-    if (!found) {
-        scores.push(newScore);
-    }
-
-    if (scores.length > 10) {
-        scores.length = 10;
-    }
-
-    return scores;
+function updatePosts(newPost) {
+    posts.push(newPost);
+    return posts;
 }
 
 async function createUser(username, password) {
@@ -145,6 +129,7 @@ async function findUser(field, value) {
 
 // setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {
+    res.clearCookie(authCookieName);
     res.cookie(authCookieName, authToken, {
         maxAge: 1000 * 60 * 60 * 24 * 365,
         secure: true,

@@ -11,7 +11,7 @@ export function WeatherWidget() {
         <div className='weather-widget'>
             {loading ? (<span>Detecting local climate...</span>
             ) : (
-                <span>{weather.icon} {weather.temp}F - {weather.condition}</span>)}
+                <span>Weather: {weather.temp}C&#176;</span>)}
         </div>
     );
 }

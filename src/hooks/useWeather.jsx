@@ -1,22 +1,62 @@
 import React, { useState, useEffect } from "react";
+import { fetchWeatherApi } from "openmeteo";
 
 export function useWeather() {
     const [weather, setWeather] = useState(null);
     const [loading, setLoading] = useState(true);
 
+
     useEffect(() => {
         async function fetchWeather() {
-            setLoading(true);
+
             try {
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                setLoading(true);
 
-                const mockWeatherResponses = [
-                    { temp: 72, condition: 'Sunny', icon: "🌤" },
-                    { temp: 36, condition: 'Snowy', icon: "🌨" },
-                    { temp: 53, condition: 'Cloudy', icon: '⛅' }
-                ];
+                const params = {
+                    latitude: 40.23399651793953,
+                    longitude: -111.6674618115889,
 
-                const randomWeather = mockWeatherResponses[Math.floor(Math.random() * mockWeatherResponses.length)];
+                    hourly: "temperature_2m",
+                };
+                const url = "https://api.open-meteo.com/v1/forecast";
+                const responses = await fetchWeatherApi(url, params);
+
+
+                // Process first location. Add a for-loop for multiple locations or weather models
+                const response = responses[0];
+
+                // Attributes for timezone and location
+                const latitude = response.latitude();
+                const longitude = response.longitude();
+                const elevation = response.elevation();
+                const utcOffsetSeconds = response.utcOffsetSeconds();
+
+                console.log(
+                    `\nCoordinates: ${latitude}°N ${longitude}°E`,
+                    `\nElevation: ${elevation}m asl`,
+                    `\nTimezone difference to GMT+0: ${utcOffsetSeconds}s`,
+                );
+
+                const hourly = response.hourly();
+
+                const weatherData = {
+                    hourly: {
+                        time: Array.from(
+                            { length: (Number(hourly.timeEnd()) - Number(hourly.time())) / hourly.interval() },
+                            (_, i) => new Date((Number(hourly.time()) + i * hourly.interval() + utcOffsetSeconds) * 1000)
+                        ),
+                        temperature_2m: hourly.variables(0).valuesArray(),
+                    },
+                };
+
+                // The 'weatherData' object now contains a simple structure, with arrays of datetimes and weather information
+                console.log("\nHourly data:\n", weatherData.hourly)
+
+
+                const randomWeather = {
+                    temp: Math.trunc(weatherData.hourly.temperature_2m[0]),
+                };
+
 
                 setWeather(randomWeather);
             } catch (error) {
