@@ -3,3 +3,4 @@ production.pem
 production-desktop.pem
 node_modules/
 dist/
+*.vim

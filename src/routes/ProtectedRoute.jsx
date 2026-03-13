@@ -1,14 +1,18 @@
 import React from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useUser } from '@src/UserContext';
+import { useEffect } from 'react';
 
 export function ProtectedRoute({ children }) {
-	const { isLoggedIn } = useUser();
-	const location = useLocation();
+    const { isLoggedIn } = useUser();
+    const location = useLocation();
+    const navigate = useNavigate();
 
-	if (!isLoggedIn) {
-		return <Navigate to='/' replace state={{ from: location }} />;
-	}
+    useEffect(() => {
+        if (!isLoggedIn) {
+            navigate('/');
+        }
+    }, [isLoggedIn, navigate])
 
-	return children;
+    return children;
 }
