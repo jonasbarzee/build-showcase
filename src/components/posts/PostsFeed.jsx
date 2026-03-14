@@ -4,7 +4,7 @@ import { PostCard } from '@components/posts/PostCard';
 
 export function PostsFeed({ category }) {
 
-    const { filteredPosts } = usePosts(category);
+    const { isLoading, filteredPosts } = usePosts(category);
 
     return (
         <main className="flex-grow-1">
@@ -15,8 +15,7 @@ export function PostsFeed({ category }) {
                             <article>
                                 <div className='posts-container'>
 
-                                    {filteredPosts.length === 0 ?
-                                        <p>No Posts Yet.</p>
+                                    {isLoading ? <div id="loading"></div>
                                         : filteredPosts.map(post => (
                                             <PostCard key={post.id} post={post} />
                                         ))}

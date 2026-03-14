@@ -23,7 +23,7 @@ export function PostProvider({ children }) {
                 console.error("Failed to fetch posts: ", error)
                 setIsLoading(false);
             });
-    }, []);
+    }, [isLoggedIn]);
 
 
     const addPost = async (newPostData) => {
