@@ -121,12 +121,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - I build an express http service in index.js in my service folder.
+- [x] **Static middleware for frontend** - I have my index.js express service serving up my frontend.
+- [x] **Calls to third party endpoints** - My third party call is to a simple weather api that displays the weather in the footer.
+- [x] **Backend service endpoints** - I have my backend service endpoints in index.js for things like fetching posts and adding posts.
+- [x] **Frontend calls service endpoints** - My frontend calls my service endpoints through http requests and the fetch function. It is in my login component, post context file, and others.
+- [x] **Supports registration, login, logout, and restricted endpoint** - I support logging in and logging out as well as registering or creating a new user. The browser gives a notification to the user through an alert if they tried to sign in and there is no corresponding username or password.
 
 ## 🚀 DB deliverable
 
