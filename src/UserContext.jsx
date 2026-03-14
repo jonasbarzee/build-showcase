@@ -44,6 +44,7 @@ export function UserProvider({ children }) {
             setUsername(username);
         } else {
             const body = await response.json();
+            alert("Error while trying to create user.")
             console.log(`Error: ${body}`);
         }
     }
@@ -62,6 +63,7 @@ export function UserProvider({ children }) {
             setUsername(username);
         } else {
             const body = await response.json();
+            alert("Incorrect username or password.")
             console.log(`Error: ${body}`);
         }
     }

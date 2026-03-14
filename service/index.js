@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
 const path = require('path');
+const fs = require('fs');
 const app = express();
 
 const authCookieName = 'token';
@@ -20,10 +21,12 @@ app.use(express.json());
 // Use the cookie parser middleware for tracking authentication tokens
 app.use(cookieParser());
 
-// Serve up the front-end static content hosting
-// change this to look into the dist directory when building with vite
-// app.use(express.static(path.join(__dirname, '..')));
-app.use(express.static(path.join(__dirname, '../dist')));
+// Dynamically determining the correct path
+const productionPath = path.join(__dirname, 'public');
+const devPath = path.join(__dirname, '../dist');
+const staticPath = fs.existsSync(productionPath) ? productionPath : devPath;
+
+app.use(express.static(staticPath));
 
 // Router for service endpoints
 var apiRouter = express.Router();
@@ -97,13 +100,8 @@ app.use(function(err, req, res, next) {
 });
 
 // Return the application's default page if the path is unknown
-// using ".." to search one directory up from where index.js is to find my index.html file
-// change this path to point to the dist folder for production when vite bundles and builds my web app
-// app.use((_req, res) => {
-//     res.sendFile(path.join(__dirname, '..', 'index.html'));
-// });
 app.use((_req, res) => {
-    res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+    res.sendFile(path.join(staticPath, 'index.html'));
 });
 
 
