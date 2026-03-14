@@ -6,14 +6,23 @@ const PostContext = createContext();
 export function PostProvider({ children }) {
     const { isLoggedIn } = useUser();
     const [posts, setPosts] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        setIsLoading(true);
+
         fetch('/api/posts').then(response => {
             if (response.ok) return response.json();
             throw new Error('Network response was not ok.');
         })
-            .then(data => setPosts(data))
-            .catch(error => console.error("Failed to fetch posts: ", error));
+            .then(data => {
+                setPosts(data)
+                setIsLoading(false);
+            })
+            .catch(error => {
+                console.error("Failed to fetch posts: ", error)
+                setIsLoading(false);
+            });
     }, []);
 
 
@@ -85,7 +94,7 @@ export function PostProvider({ children }) {
 
 
     return (
-        <PostContext.Provider value={{ posts, addPost, castVote, rescindVote }}>
+        <PostContext.Provider value={{ posts, isLoading, addPost, castVote, rescindVote }}>
             {children}
         </PostContext.Provider>
     );
