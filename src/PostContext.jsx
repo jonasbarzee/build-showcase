@@ -1,17 +1,23 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { useUser } from "@src/UserContext";
-import { useLocalStorage } from "@src/hooks/useLocalStorage";
 
 const PostContext = createContext();
 
 export function PostProvider({ children }) {
-
     const { isLoggedIn } = useUser();
+    const [posts, setPosts] = useState([]);
 
-    // mocking inital database state with list of posts
-    const [posts, setPosts] = useLocalStorage('posts', []);
+    useEffect(() => {
+        fetch('/api/posts').then(response => {
+            if (response.ok) return response.json();
+            throw new Error('Network response was not ok.');
+        })
+            .then(data => setPosts(data))
+            .catch(error => console.error("Failed to fetch posts: ", error));
+    }, []);
 
-    const addPost = (newPostData) => {
+
+    const addPost = async (newPostData) => {
         const newPost = {
             id: Date.now(),
             upvotes: 0,
@@ -20,35 +26,41 @@ export function PostProvider({ children }) {
             ...newPostData
         };
 
-        setPosts(prev => [newPost, ...prev]);
+        const response = await fetch('/api/posts', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newPost)
+        });
+
+        if (response.ok) {
+            const updatedPosts = await response.json();
+            setPosts(updatedPosts);
+        }
+    };
+
+    const updateVoteInService = async (postId, type, action) => {
+        const response = await fetch(`/api/posts/${postId}/vote`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ type, action })
+        });
+
+        if (response.ok) {
+            const updatedPost = await response.json();
+            setPosts(prevPosts => prevPosts.map(post =>
+                post.id === postId ? updatedPost : post
+            ));
+        }
     };
 
     const castVote = (postId, type) => {
-        setPosts(prevPosts => prevPosts.map(post => {
-            if (post.id === postId) {
-                return {
-                    ...post,
-                    [type]: post[type] + 1
-                };
-            }
-            return post;
-        }));
-
-        console.log(`User votes ${type} on post ${postId}`);
+        updateVoteInService(postId, type, 'cast');
+        console.log(`User ${type} on post ${postId}`);
     };
 
     const rescindVote = (postId, type) => {
-        setPosts(prevPosts => prevPosts.map(post => {
-            if (post.id === postId) {
-                return {
-                    ...post,
-                    [type]: Math.max(0, post[type] - 1)
-                };
-            }
-            return post;
-        }));
-
-        console.log(`User rescinded their vote on post ${postId}`);
+        updateVoteInService(postId, type, 'rescind');
+        console.log(`User rescinds their vote on post ${postId}`);
     };
 
     useEffect(() => {
