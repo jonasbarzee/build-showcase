@@ -5,6 +5,7 @@ const uuid = require('uuid');
 const path = require('path');
 const fs = require('fs');
 const app = express();
+const DB = require('./database.js');
 
 const authCookieName = 'token';
 

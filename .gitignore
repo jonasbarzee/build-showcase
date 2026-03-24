@@ -4,3 +4,4 @@ production-desktop.pem
 node_modules/
 dist/
 *.vim
+dbConfig.json
