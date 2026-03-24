@@ -142,7 +142,7 @@ apiRouter.get('/posts', verifyAuth, async (_req, res) => {
 });
 
 // AddPost
-apiRouter.post('/posts', verifyAuth, (req, res) => {
+apiRouter.post('/posts', verifyAuth, async (req, res) => {
 
     // in body of the request
     //
@@ -154,8 +154,9 @@ apiRouter.post('/posts', verifyAuth, (req, res) => {
     //            ...newPostData
     //        };
 
-    const newPost = req.body;
-    const posts = addPost(newPost);
+    console.log("Hit addPost endpoint at /posts, (requires, verification)");
+    const posts = await addPost(req.body);
+    console.log("Called addPost, result (posts) -> ", posts);
     res.send(posts);
 });
 

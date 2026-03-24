@@ -28,11 +28,15 @@ while getopts "c:p:" flag; do
 done
 
 # Main logic of the script
-if [[ "$c_flag" = true &&  "$p_flag" = true ]] ; then
+if [[ "$c_flag" = true ]] ; then
     echo "'-c' flag was set with cookie value ${cookie}"
     echo "'-p' flag was set with value ${post}"
 
-    curl -X POST -b "token=${cookie}" -H 'Content-Type: application/json' \
+    echo "executing: curl -X POST -b token="${cookie}" -H 'Content-Type: application/json' \
+        -d '{"id": "1", "picture": "testing", "content": "this is a test"}' \
+        'http://localhost:4000/api/posts'"
+
+    curl -X POST -b token="${cookie}" -H 'Content-Type: application/json' \
         -d '{"id": "1", "picture": "testing", "content": "this is a test"}' \
         'http://localhost:4000/api/posts'
 fi
