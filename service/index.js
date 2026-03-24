@@ -10,7 +10,6 @@ const DB = require('./database.js');
 const authCookieName = 'token';
 
 // The scores and users are saved in memory and disappear whenever the service is restarted.
-let users = [];
 let posts = [{
     id: 1,
     upvotes: 0,
@@ -211,7 +210,10 @@ async function createUser(username, password) {
 async function findUser(field, value) {
     if (!value) return null;
 
-    return users.find((u) => u[field] === value);
+    if (field === 'token') {
+        return DB.getUserByToken(value);
+    }
+    return DB.getUser(value)
 }
 
 // setAuthCookie in the HTTP response

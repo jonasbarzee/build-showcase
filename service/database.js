@@ -18,8 +18,8 @@ const postCollection = db.collection('post');
     }
 })();
 
-function getUser(email) {
-    return userCollection.findOne({ email: email });
+function getUser(username) {
+    return userCollection.findOne({ username: username });
 }
 
 function getUserByToken(token) {
@@ -35,7 +35,7 @@ async function updateUser(user) {
 }
 
 async function updateUserRemoveAuth(user) {
-    await userCollection.updateOne({ email: user.email }, { $unset: { token: 1 } });
+    const result = await userCollection.updateOne({ username: user.username }, { $unset: { token: 1 } });
 }
 
 async function addPost(post) {
