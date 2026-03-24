@@ -97,7 +97,7 @@ apiRouter.post('/auth/create', async (req, res) => {
         const user = await createUser(req.body.username, req.body.password);
 
         setAuthCookie(res, user.token);
-        res.send({ username: user.username, passwordHash: user.password });
+        res.send({ username: user.username });
     }
 });
 
@@ -107,8 +107,9 @@ apiRouter.post('/auth/login', async (req, res) => {
     if (user) {
         if (await bcrypt.compare(req.body.password, user.password)) {
             user.token = uuid.v4();
+            await DB.updateUser(user);
             setAuthCookie(res, user.token);
-            res.send({ username: user.username, token: user.token });
+            res.send({ username: user.username });
             return;
         }
     }
@@ -119,7 +120,7 @@ apiRouter.post('/auth/login', async (req, res) => {
 apiRouter.delete('/auth/logout', async (req, res) => {
     const user = await findUser('token', req.cookies[authCookieName]);
     if (user) {
-        delete user.token;
+        await DB.updateUserRemoveAuth(user);
     }
     res.clearCookie(authCookieName);
     res.status(204).end();
@@ -128,7 +129,6 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 // Middleware to verify that the user is authorized to call an endpoint
 const verifyAuth = async (req, res, next) => {
     const user = await findUser('token', req.cookies[authCookieName]);
-    console.log(user);
     if (user) {
         next();
     } else {
@@ -137,13 +137,26 @@ const verifyAuth = async (req, res, next) => {
 };
 
 // GetPosts 
-apiRouter.get('/posts', verifyAuth, (_req, res) => {
+apiRouter.get('/posts', verifyAuth, async (_req, res) => {
+    const posts = await DB.getPosts();
     res.send(posts);
 });
 
-// SubmitPost
+// AddPost
 apiRouter.post('/posts', verifyAuth, (req, res) => {
-    posts = updatePosts(req.body);
+
+    // in body of the request
+    //
+    //        const newPost = {
+    //            id: Date.now(),
+    //            upvotes: 0,
+    //            downvotes: 0,
+    //            category: 'gallery',
+    //            ...newPostData
+    //        };
+
+    const newPost = req.body;
+    const posts = addPost(newPost);
     res.send(posts);
 });
 
@@ -177,8 +190,8 @@ app.use((_req, res) => {
 
 
 // updateScores considers a new score for inclusion in the high scores.
-function updatePosts(newPost) {
-    posts.push(newPost);
+async function addPost(newPost) {
+    const posts = await DB.addPost(newPost);
     return posts;
 }
 
@@ -190,7 +203,7 @@ async function createUser(username, password) {
         password: passwordHash,
         token: uuid.v4(),
     };
-    users.push(user);
+    await DB.addUser(user);
 
     return user;
 }

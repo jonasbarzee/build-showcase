@@ -42,15 +42,10 @@ async function addPost(post) {
     return postCollection.insertOne(post);
 }
 
-// function getHighPosts() {
-//     const query = { post: { $gt: 0, $lt: 900 } };
-//     const options = {
-//         sort: { post: -1 },
-//         limit: 10,
-//     };
-//     const cursor = postCollection.find(query, options);
-//     return cursor.toArray();
-// }
+function getPosts() {
+    const cursor = postCollection.find();
+    return cursor.toArray();
+}
 
 module.exports = {
     getUser,
@@ -59,5 +54,5 @@ module.exports = {
     updateUser,
     updateUserRemoveAuth,
     addPost,
-    // getHighPosts,
+    getPosts,
 };
