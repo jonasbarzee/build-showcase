@@ -38,19 +38,19 @@ async function updateUserRemoveAuth(user) {
     await userCollection.updateOne({ email: user.email }, { $unset: { token: 1 } });
 }
 
-async function addScore(score) {
-    return scoreCollection.insertOne(score);
+async function addPost(post) {
+    return postCollection.insertOne(post);
 }
 
-function getHighScores() {
-    const query = { score: { $gt: 0, $lt: 900 } };
-    const options = {
-        sort: { score: -1 },
-        limit: 10,
-    };
-    const cursor = scoreCollection.find(query, options);
-    return cursor.toArray();
-}
+// function getHighPosts() {
+//     const query = { post: { $gt: 0, $lt: 900 } };
+//     const options = {
+//         sort: { post: -1 },
+//         limit: 10,
+//     };
+//     const cursor = postCollection.find(query, options);
+//     return cursor.toArray();
+// }
 
 module.exports = {
     getUser,
@@ -58,6 +58,6 @@ module.exports = {
     addUser,
     updateUser,
     updateUserRemoveAuth,
-    addScore,
-    getHighScores,
+    addPost,
+    // getHighPosts,
 };
