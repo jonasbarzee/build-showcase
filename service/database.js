@@ -27,24 +27,28 @@ function getUserByToken(token) {
 }
 
 async function addUser(user) {
-    await userCollection.insertOne(user);
+    await userCollection.insertOne({ user });
 }
 
 async function updateUser(user) {
-    await userCollection.updateOne({ email: user.email }, { $set: user });
+    await userCollection.updateOne({ email: user.email }, { $set: { user } });
 }
 
 async function updateUserRemoveAuth(user) {
-    const result = await userCollection.updateOne({ username: user.username }, { $unset: { token: 1 } });
+    await userCollection.updateOne({ username: user.username }, { $unset: { token: 1 } });
 }
 
 async function addPost(post) {
-    return postCollection.insertOne(post);
+    return postCollection.insertOne({ post });
 }
 
 function getPosts() {
     const cursor = postCollection.find();
     return cursor.toArray();
+}
+
+async function updatePost(_id, post) {
+    await postCollection.updateOne({ _id }, { $set: { post } });
 }
 
 module.exports = {
@@ -55,4 +59,5 @@ module.exports = {
     updateUserRemoveAuth,
     addPost,
     getPosts,
+    updatePost,
 };
