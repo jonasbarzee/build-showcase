@@ -88,7 +88,7 @@ export function PostProvider({ children }) {
 
             console.log("Simulating websocket voting...");
             castVote(randomPost._id, type);
-        }, 5000);
+        }, 60000);
 
         return () => {
             console.log("WebSocket Mock: Disconnected");
