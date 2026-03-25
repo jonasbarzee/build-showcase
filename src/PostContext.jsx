@@ -28,7 +28,6 @@ export function PostProvider({ children }) {
 
     const addPost = async (newPostData) => {
         const newPost = {
-            id: Date.now(),
             upvotes: 0,
             downvotes: 0,
             category: 'gallery',

@@ -93,7 +93,7 @@ apiRouter.put('/posts/:id/vote', verifyAuth, async (req, res) => {
     const { type, action } = req.body;
 
     const posts = await DB.getPosts();
-    const postIndexInArray = posts.findIndex(element => element.post.id === postId);
+    const postIndexInArray = posts.findIndex(post => post.id === postId);
 
     console.log("Given postId: ", postId,)
     console.log("Type: ", type,)
@@ -105,18 +105,13 @@ apiRouter.put('/posts/:id/vote', verifyAuth, async (req, res) => {
         return res.status(404).send({ msg: 'Post not found' });
     }
 
-    const targetPost = posts[postIndexInArray].post;
-
     if (action === 'cast') {
-        targetPost[type] += 1;
+        posts[postIndexInArray][type] += 1;
     } else if (action === 'rescind') {
-        targetPost[type] = Math.max(0, posts[postIndexInArray][type] - 1);
+        posts[postIndexInArray][type] = Math.max(0, posts[postIndexInArray][type] - 1);
     }
 
-    // this is using the _id value from mongoDB that is automatically
-    // given to each object
-    const _id = posts[postIndexInArray]._id;
-    voteOnPost(_id, targetPost);
+    voteOnPost(id, targetPost);
 
     res.send(posts)
 });
