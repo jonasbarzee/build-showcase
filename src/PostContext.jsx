@@ -8,23 +8,32 @@ export function PostProvider({ children }) {
     const [posts, setPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        setIsLoading(true);
+    useEffect( () => {
+        if (!isLoggedIn) {
+            setPosts([]);
+            setIsLoading(false);
+            return;
+        }
 
-        fetch('/api/posts').then(response => {
-            if (response.ok) return response.json();
-            throw new Error('Network response was not ok.');
-        })
-            .then(data => {
-                setPosts(data)
+        const fetchPosts = async () => {
+            setIsLoading(true);
+            try {
+                const response = await fetch('/api/posts');
+                if (response.ok) {
+                    const data = await response.json();
+                    setPosts(data);
+                }else {
+                    console.error("Failed to fetch posts:", response.status);
+                }
+            } catch (error) {
+                console.error("Failed to fetch posts:", error);
+            } finally {
                 setIsLoading(false);
-            })
-            .catch(error => {
-                console.error("Failed to fetch posts: ", error)
-                setIsLoading(false);
-            });
+        }
+    };
+
+    fetchPosts();
     }, [isLoggedIn]);
-
 
     const addPost = async (newPostData) => {
         const newPost = {
