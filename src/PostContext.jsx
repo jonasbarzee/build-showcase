@@ -46,7 +46,7 @@ export function PostProvider({ children }) {
         }
     };
 
-    const updateVoteInService = async (postId, type, action) => {
+    const updateVoteInDatabase = async (postId, type, action) => {
         const response = await fetch(`/api/posts/${postId}/vote`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
@@ -56,19 +56,17 @@ export function PostProvider({ children }) {
         if (response.ok) {
             const updatedPost = await response.json();
             setPosts(prevPosts => prevPosts.map(post =>
-                post.id === postId ? updatedPost : post
+                post._id === postId ? updatedPost : post
             ));
         }
     };
 
     const castVote = (postId, type) => {
-        updateVoteInService(postId, type, 'cast');
-        console.log(`User ${type} on post ${postId}`);
+        updateVoteInDatabase(postId, type, 'cast');
     };
 
     const rescindVote = (postId, type) => {
-        updateVoteInService(postId, type, 'rescind');
-        console.log(`User rescinds their vote on post ${postId}`);
+        updateVoteInDatabase(postId, type, 'rescind');
     };
 
     // commented out mock websocket code, it was getting annoying to have all the notifications

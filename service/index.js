@@ -96,12 +96,6 @@ apiRouter.put('/posts/:id/vote', verifyAuth, async (req, res) => {
     const postIndexInArray = posts.findIndex(post => post._id.toString() === _id);
     const targetPost = posts[postIndexInArray];
 
-    console.log("Given _id: ", _id)
-    console.log("Type: ", type,)
-    console.log("Action: ", action,)
-    console.log("Posts in DB: ", posts,)
-    console.log("Found index: ", postIndexInArray,)
-
     if (postIndexInArray === -1) {
         return res.status(404).send({ msg: 'Post not found' });
     }
@@ -112,12 +106,10 @@ apiRouter.put('/posts/:id/vote', verifyAuth, async (req, res) => {
     } else if (action === 'rescind') {
         value = Math.max(0, targetPost[type] - 1);
     }
+    const updatedPosts = await voteOnPost(_id, type, value);
+    console.log("Updated posts: ", updatedPosts);
 
-    console.log("Payload post: ", targetPost,)
-
-    voteOnPost(_id, type, value);
-
-    res.send(posts)
+    res.send(updatedPosts);
 });
 
 async function voteOnPost(_id, field, value) {
@@ -128,7 +120,7 @@ async function voteOnPost(_id, field, value) {
     } else {
         result = await DB.downvotePost(_id, value);
     }
-    console.log("Result: ", result)
+    return DB.getPosts();
 
 }
 
