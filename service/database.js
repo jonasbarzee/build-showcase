@@ -31,7 +31,7 @@ async function addUser(user) {
 }
 
 async function updateUser(user) {
-    await userCollection.updateOne({ email: user.email }, { $set: user });
+    await userCollection.updateOne({ username: user.username }, { $set: user });
 }
 
 async function updateUserRemoveAuth(user) {
