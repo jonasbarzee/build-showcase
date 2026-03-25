@@ -27,22 +27,14 @@ fi
 # Define the JSON payload in a variable using a Heredoc
 # We use quotes around "EOF" to prevent Bash from trying to expand variables inside the JSON
 read -r -d '' PAYLOAD <<EOF
-{
-  "id": 1,
-  "upvotes": 0,
-  "downvotes": 0,
-  "category": "gallery",
-  "author": "You",
-  "imageUrl": "https://media.istockphoto.com/id/1282514444/photo/cow-udder-large-and-full-and-with-horns-in-the-green-pasture-and-a-blue-sky.jpg?s=612x612&w=0&k=20&c=a2TuO1u4H4wKW7aSizBh7Df8CLA70MEPTcadLfc35bk=",
-  "content": "I finally completed my first project, a hotdog maker! I used a smart fridge and a GPU to make it work with custom RGB."
-}
+{"type":"upvotes","action":"cast"}
 EOF
 
 echo "'-c' flag was set with cookie value ${cookie}"
 
 # Pass the variable to curl
-curl -X POST \
+curl -i -X PUT \
      -b "token=${cookie}" \
      -H 'Content-Type: application/json' \
      -d "$PAYLOAD" \
-     "http://localhost:4000/api/posts"
+     "http://localhost:4000/api/posts/1/vote"

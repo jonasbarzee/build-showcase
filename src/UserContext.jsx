@@ -27,8 +27,6 @@ export function UserProvider({ children }) {
         return votedPosts.find(item => item.postId === postIdToCheck);
     };
 
-    // password is still discarded right now just because it is a place holder
-    // TODO add password authentication in the database phase
 
     async function createUser(username, password) {
         const response = await fetch('/api/auth/create', {

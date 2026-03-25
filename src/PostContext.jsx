@@ -9,26 +9,34 @@ export function PostProvider({ children }) {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        setIsLoading(true);
+        if (!isLoggedIn) {
+            setPosts([]);
+            setIsLoading(false);
+            return;
+        }
 
-        fetch('/api/posts').then(response => {
-            if (response.ok) return response.json();
-            throw new Error('Network response was not ok.');
-        })
-            .then(data => {
-                setPosts(data)
+        const fetchPosts = async () => {
+            setIsLoading(true);
+            try {
+                const response = await fetch('/api/posts');
+                if (response.ok) {
+                    const data = await response.json();
+                    setPosts(data);
+                } else {
+                    console.error("Failed to fetch posts:", response.status);
+                }
+            } catch (error) {
+                console.error("Failed to fetch posts:", error);
+            } finally {
                 setIsLoading(false);
-            })
-            .catch(error => {
-                console.error("Failed to fetch posts: ", error)
-                setIsLoading(false);
-            });
+            }
+        };
+
+        fetchPosts();
     }, [isLoggedIn]);
-
 
     const addPost = async (newPostData) => {
         const newPost = {
-            id: Date.now(),
             upvotes: 0,
             downvotes: 0,
             category: 'gallery',
@@ -47,7 +55,7 @@ export function PostProvider({ children }) {
         }
     };
 
-    const updateVoteInService = async (postId, type, action) => {
+    const updateVoteInDatabase = async (postId, type, action) => {
         const response = await fetch(`/api/posts/${postId}/vote`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
@@ -55,42 +63,38 @@ export function PostProvider({ children }) {
         });
 
         if (response.ok) {
-            const updatedPost = await response.json();
-            setPosts(prevPosts => prevPosts.map(post =>
-                post.id === postId ? updatedPost : post
-            ));
+            const updatedPosts = await response.json();
+            setPosts(updatedPosts);
         }
     };
 
     const castVote = (postId, type) => {
-        updateVoteInService(postId, type, 'cast');
-        console.log(`User ${type} on post ${postId}`);
+        updateVoteInDatabase(postId, type, 'cast');
     };
 
     const rescindVote = (postId, type) => {
-        updateVoteInService(postId, type, 'rescind');
-        console.log(`User rescinds their vote on post ${postId}`);
+        updateVoteInDatabase(postId, type, 'rescind');
     };
 
     useEffect(() => {
-
-        if (!isLoggedIn) return;
+        if (!isLoggedIn || posts.length === 0) return;
 
         console.log("WebSocket Mock: Connection established");
 
         const intervalId = setInterval(() => {
-            const randomId = Math.floor(Math.random() * 6) + 1;
+            const randomIndex = Math.floor(Math.random() * posts.length);
+            const randomPost = posts[randomIndex];
             const type = Math.random() > 0.5 ? 'upvotes' : 'downvotes';
 
             console.log("Simulating websocket voting...");
-            castVote(randomId, type);
-        }, 5000);
+            castVote(randomPost._id, type);
+        }, 60000);
 
         return () => {
             console.log("WebSocket Mock: Disconnected");
             clearInterval(intervalId);
         };
-    }, [isLoggedIn]);
+    }, [isLoggedIn, posts]);
 
 
     return (
