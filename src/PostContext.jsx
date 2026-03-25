@@ -8,7 +8,7 @@ export function PostProvider({ children }) {
     const [posts, setPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    useEffect( () => {
+    useEffect(() => {
         if (!isLoggedIn) {
             setPosts([]);
             setIsLoading(false);
@@ -22,17 +22,17 @@ export function PostProvider({ children }) {
                 if (response.ok) {
                     const data = await response.json();
                     setPosts(data);
-                }else {
+                } else {
                     console.error("Failed to fetch posts:", response.status);
                 }
             } catch (error) {
                 console.error("Failed to fetch posts:", error);
             } finally {
                 setIsLoading(false);
-        }
-    };
+            }
+        };
 
-    fetchPosts();
+        fetchPosts();
     }, [isLoggedIn]);
 
     const addPost = async (newPostData) => {
@@ -63,10 +63,8 @@ export function PostProvider({ children }) {
         });
 
         if (response.ok) {
-            const updatedPost = await response.json();
-            setPosts(prevPosts => prevPosts.map(post =>
-                post._id === postId ? updatedPost : post
-            ));
+            const updatedPosts = await response.json();
+            setPosts(updatedPosts);
         }
     };
 
