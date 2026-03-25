@@ -17,7 +17,7 @@ export function PostsFeed({ category }) {
 
                                     {isLoading ? <div id="loading"></div>
                                         : filteredPosts.map(post => (
-                                            <PostCard key={post.id} post={post} />
+                                            <PostCard key={post._id} post={post} />
                                         ))}
                                     <p>^^^ Placeholder for content to be fetched from the database</p>
                                 </div>

@@ -7,7 +7,7 @@ export function PostCard({ post }) {
     const { castVote, rescindVote } = usePosts();
     const { getExistingVote, recordVote, removeVote, isLoggedIn } = useUser();
 
-    const existingVote = getExistingVote(post.id);
+    const existingVote = getExistingVote(post._id);
     const canVote = isLoggedIn && !existingVote;
 
     const handleVote = (type) => {
