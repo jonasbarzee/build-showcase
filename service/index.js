@@ -89,13 +89,14 @@ apiRouter.post('/posts', verifyAuth, async (req, res) => {
 });
 
 apiRouter.put('/posts/:id/vote', verifyAuth, async (req, res) => {
-    const postId = parseInt(req.params.id);
+    const _id = req.params.id;
     const { type, action } = req.body;
 
     const posts = await DB.getPosts();
-    const postIndexInArray = posts.findIndex(post => post.id === postId);
+    const postIndexInArray = posts.findIndex(post => post._id.toString() === _id);
+    const targetPost = posts[postIndexInArray];
 
-    console.log("Given postId: ", postId,)
+    console.log("Given _id: ", _id)
     console.log("Type: ", type,)
     console.log("Action: ", action,)
     console.log("Posts in DB: ", posts,)
@@ -105,19 +106,28 @@ apiRouter.put('/posts/:id/vote', verifyAuth, async (req, res) => {
         return res.status(404).send({ msg: 'Post not found' });
     }
 
+    let value = 0;
     if (action === 'cast') {
-        posts[postIndexInArray][type] += 1;
+        value = targetPost[type] += 1;
     } else if (action === 'rescind') {
-        posts[postIndexInArray][type] = Math.max(0, posts[postIndexInArray][type] - 1);
+        value = Math.max(0, targetPost[type] - 1);
     }
 
-    voteOnPost(id, targetPost);
+    console.log("Payload post: ", targetPost,)
+
+    voteOnPost(_id, type, value);
 
     res.send(posts)
 });
 
-async function voteOnPost(id, post) {
-    const result = await DB.updatePost(id, post);
+async function voteOnPost(_id, field, value) {
+    let result;
+
+    if (field == 'upvotes') {
+        result = await DB.upvotePost(_id, value);
+    } else {
+        result = await DB.downvotePost(_id, value);
+    }
     console.log("Result: ", result)
 
 }

@@ -13,15 +13,16 @@ export function PostCard({ post }) {
     const handleVote = (type) => {
         if (!canVote) return;
 
-        castVote(post.id, type);
-        recordVote(post.id, type);
+        console.log(post._id);
+        castVote(post._id, type);
+        recordVote(post._id, type);
     };
 
     const handleVoteRevoke = () => {
         if (!existingVote) return;
 
-        rescindVote(post.id, existingVote.type);
-        removeVote(post.id);
+        rescindVote(post._id, existingVote.type);
+        removeVote(post._id);
     }
 
     return (

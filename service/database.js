@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 const config = require('./dbConfig.json');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
@@ -47,8 +47,16 @@ function getPosts() {
     return cursor.toArray();
 }
 
-async function updatePost(_id, post) {
-    await postCollection.updateOne({ _id }, { $set: post });
+async function upvotePost(_id, value) {
+    await postCollection.updateOne(
+        { _id: new ObjectId(_id) },
+        { $set: { upvotes: value } });
+}
+
+async function downvotePost(_id, value) {
+    await postCollection.updateOne(
+        { _id: new ObjectId(_id) },
+        { $set: { downvotes: value } });
 }
 
 module.exports = {
@@ -59,5 +67,6 @@ module.exports = {
     updateUserRemoveAuth,
     addPost,
     getPosts,
-    updatePost,
+    upvotePost,
+    downvotePost
 };
