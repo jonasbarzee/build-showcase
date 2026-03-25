@@ -76,27 +76,26 @@ export function PostProvider({ children }) {
         updateVoteInDatabase(postId, type, 'rescind');
     };
 
-    // commented out mock websocket code, it was getting annoying to have all the notifications
-    //    useEffect(() => {
-    //
-    //        if (!isLoggedIn) return;
-    //
-    //        console.log("WebSocket Mock: Connection established");
-    //
-    //        const intervalId = setInterval(() => {
-    //            const randomId = Math.floor(Math.random() * 6) + 1;
-    //            const type = Math.random() > 0.5 ? 'upvotes' : 'downvotes';
-    //
-    //            console.log("Simulating websocket voting...");
-    //            castVote(randomId, type);
-    //        }, 5000);
-    //
-    //        return () => {
-    //            console.log("WebSocket Mock: Disconnected");
-    //            clearInterval(intervalId);
-    //        };
-    //    }, [isLoggedIn]);
-    //
+    useEffect(() => {
+        if (!isLoggedIn || posts.length === 0) return;
+
+        console.log("WebSocket Mock: Connection established");
+
+        const intervalId = setInterval(() => {
+            const randomIndex = Math.floor(Math.random() * posts.length);
+            const randomPost = posts[randomIndex];
+            const type = Math.random() > 0.5 ? 'upvotes' : 'downvotes';
+
+            console.log("Simulating websocket voting...");
+            castVote(randomPost._id, type);
+        }, 5000);
+
+        return () => {
+            console.log("WebSocket Mock: Disconnected");
+            clearInterval(intervalId);
+        };
+    }, [isLoggedIn, posts]);
+
 
     return (
         <PostContext.Provider value={{ posts, isLoading, addPost, castVote, rescindVote }}>
