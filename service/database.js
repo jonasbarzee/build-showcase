@@ -39,7 +39,8 @@ async function updateUserRemoveAuth(user) {
 }
 
 async function addPost(post) {
-    return postCollection.insertOne(post);
+    await postCollection.insertOne(post);
+    return postCollection.find().toArray();
 }
 
 function getPosts() {
