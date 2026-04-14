@@ -1,11 +1,11 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { useUser } from "@src/UserContext";
-import { VoteNotifier } from "./voteNotifier";
+import { VoteEvent, VoteNotifier } from "./voteNotifier";
 
 const PostContext = createContext();
 
 export function PostProvider({ children }) {
-    const { isLoggedIn } = useUser();
+    const { isLoggedIn, username } = useUser();
     const [posts, setPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -66,7 +66,7 @@ export function PostProvider({ children }) {
         if (response.ok) {
             const updatedPosts = await response.json();
             setPosts(updatedPosts);
-            VoteNotifier.broadcastEvent(postId, type, action);
+            VoteNotifier.broadcastEvent(username, VoteEvent.Vote, { postId, voteType: type, action });
         }
     };
 
