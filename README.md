@@ -139,8 +139,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [x] **Backend listens for WebSocket connection** - Backend is listening for websocket connections in service/index.js
+- [x] **Frontend makes WebSocket connection** - Frontend is making the websocket connection in src/eventNotifier.js
+- [x] **Data sent over WebSocket connection** - Data is being send over the websocket, specifically the newly updated post infromation
+- [x] **WebSocket data displayed** - The data is displayed for the websocket to the user by the count of votes changing.
+- [x] **Application is fully functional** - Nothing is mocked anymore, application is fully functional.
