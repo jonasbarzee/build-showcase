@@ -84,7 +84,7 @@ export function PostProvider({ children }) {
         return () => {
             VoteNotifier.removeHandler(handleVoteEvent);
         };
-    });
+    }, []);
 
     function handleVoteEvent(event) {
         setPosts(...posts, event);
