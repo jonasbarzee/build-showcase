@@ -87,7 +87,20 @@ export function PostProvider({ children }) {
     }, []);
 
     function handleVoteEvent(event) {
-        setPosts(...posts, event);
+        if (event.type !== VoteEvent.Vote) return;
+
+        const { postId, voteType, action } = event.value;
+
+        setPosts(prevPosts => prevPosts.map(post => {
+            if (post._id === postId) {
+                const delta = action === 'cast' ? 1 : -1;
+                return {
+                    ...post,
+                    [voteType]: Math.max(0, (post[voteType] || 0) + delta),
+                };
+            }
+            return post;
+        }));
     }
 
 
