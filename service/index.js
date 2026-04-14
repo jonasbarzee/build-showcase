@@ -6,6 +6,7 @@ const path = require('path');
 const fs = require('fs');
 const app = express();
 const DB = require('./database.js');
+const peerProxy = require('./peerProxy.js');
 
 const authCookieName = 'token';
 
@@ -175,6 +176,9 @@ function setAuthCookie(res, authToken) {
     });
 }
 
-app.listen(port, () => {
+// creating a httpService and passing it to peerProxy for websocket connections
+const httpService = app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
+
+peerProxy(httpService);
