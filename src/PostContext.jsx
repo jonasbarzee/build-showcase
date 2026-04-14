@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { useUser } from "@src/UserContext";
+import { VoteNotifier } from "./voteNotifier";
 
 const PostContext = createContext();
 
@@ -65,6 +66,7 @@ export function PostProvider({ children }) {
         if (response.ok) {
             const updatedPosts = await response.json();
             setPosts(updatedPosts);
+            VoteNotifier.broadcastEvent(postId, type, action);
         }
     };
 
@@ -76,25 +78,17 @@ export function PostProvider({ children }) {
         updateVoteInDatabase(postId, type, 'rescind');
     };
 
-    useEffect(() => {
-        if (!isLoggedIn || posts.length === 0) return;
-
-        console.log("WebSocket Mock: Connection established");
-
-        const intervalId = setInterval(() => {
-            const randomIndex = Math.floor(Math.random() * posts.length);
-            const randomPost = posts[randomIndex];
-            const type = Math.random() > 0.5 ? 'upvotes' : 'downvotes';
-
-            console.log("Simulating websocket voting...");
-            castVote(randomPost._id, type);
-        }, 60000);
+    React.useEffect(() => {
+        VoteNotifier.addHandler(handleVoteEvent);
 
         return () => {
-            console.log("WebSocket Mock: Disconnected");
-            clearInterval(intervalId);
+            VoteNotifier.removeHandler(handleVoteEvent);
         };
-    }, [isLoggedIn, posts]);
+    });
+
+    function handleVoteEvent(event) {
+        setPosts(...posts, event);
+    }
 
 
     return (
