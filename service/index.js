@@ -6,7 +6,7 @@ const path = require('path');
 const fs = require('fs');
 const app = express();
 const DB = require('./database.js');
-const peerProxy = require('./peerProxy.js');
+const { peerProxy } = require('./peerProxy.js');
 
 const authCookieName = 'token';
 
